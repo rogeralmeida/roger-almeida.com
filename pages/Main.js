@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Markdown from './Markdown';
-import { Card, CardContent, CardActionArea } from '@material-ui/core';
+import { Card, CardContent, CardActionArea, CardMedia } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   markdown: {
@@ -27,6 +27,12 @@ export default function Main(props) {
         <>
           <Divider />
           <Card className={classes.card}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                image={post.data.cover_picture}
+              />
+            </CardActionArea>
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 { post.data.title }
