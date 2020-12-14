@@ -16,6 +16,8 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import { purple } from '@material-ui/core/colors';
 import green from '@material-ui/core/colors/green';
 
+const matter = require('gray-matter');
+
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
     marginTop: theme.spacing(3),
@@ -44,26 +46,7 @@ const mainFeaturedPost = {
   linkText: 'Continue reading…',
 };
 
-const featuredPosts = [
-  {
-    title: 'Featured post',
-    date: 'Nov 12',
-    description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text',
-  },
-  {
-    title: 'Post title',
-    date: 'Nov 11',
-    description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text',
-  },
-];
-
-// const posts = [post1, post2, post3];
+const featuredPosts = [];
 
 const sidebar = {
   title: 'About',
@@ -94,9 +77,16 @@ export async function getStaticProps() {
   const fs = require('fs');
   const files = fs.readdirSync('./pages/_posts')
   files.forEach(async file => {
-    const post = await import(`./_posts/${file}`);
-    posts.push(`${post.default}`);
+    const postFile = await import(`./_posts/${file}`);
+    const post = matter(`${postFile.default}`, {excerpt_separator: '<!-- more -->'});
+    console.log(post);
+    if(post.featured){
+      featuredPosts.push(post)
+    }
+    post.orig = ''
+    posts.push({...post });
   });
+  console.log('Posts', posts)
   return {props: {posts}}
 }
 
@@ -121,12 +111,6 @@ const Blog = function (props) {
       <Container maxWidth="lg">
         <Header title="Roger-Almeida.com" sections={sections} />
         <main>
-          <MainFeaturedPost post={mainFeaturedPost} />
-          <Grid container spacing={4}>
-            {featuredPosts.map((post) => (
-              <FeaturedPost key={post.title} post={post} />
-            ))}
-          </Grid>
           <Grid container spacing={5} className={classes.mainGrid}>
             <Main title="From the firehose" posts={posts} />
             <Sidebar

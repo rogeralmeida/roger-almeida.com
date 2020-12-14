@@ -5,12 +5,16 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Markdown from './Markdown';
+import { Card, CardContent, CardActionArea } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   markdown: {
     ...theme.typography.body2,
     padding: theme.spacing(3, 0),
   },
+  card: {
+    padding: theme.spacing(1)
+  }
 }));
 
 export default function Main(props) {
@@ -19,14 +23,20 @@ export default function Main(props) {
 
   return (
     <Grid item xs={12} md={8}>
-      <Typography variant="h6" gutterBottom>
-        {title}
-      </Typography>
-      <Divider />
       {posts.map((post) => (
-        <Markdown className={classes.markdown} key={post.substring(0, 40)}>
-          {post}
-        </Markdown>
+        <>
+          <Divider />
+          <Card className={classes.card}>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                { post.data.title }
+              </Typography>
+              <Markdown className={classes.markdown} key={post}>
+                { post.excerpt}
+              </Markdown>
+            </CardContent>
+          </Card>
+        </>
       ))}
     </Grid>
   );
