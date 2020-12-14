@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider, withStyles, withTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
@@ -12,9 +12,9 @@ import FeaturedPost from './FeaturedPost';
 import Main from './Main';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
-import post1 from './blog-post.1.md';
-import post2 from './blog-post.2.md';
-import post3 from './blog-post.3.md';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import { purple } from '@material-ui/core/colors';
+import green from '@material-ui/core/colors/green';
 
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
@@ -63,7 +63,7 @@ const featuredPosts = [
   },
 ];
 
-const posts = [post1, post2, post3];
+// const posts = [post1, post2, post3];
 
 const sidebar = {
   title: 'About',
@@ -89,14 +89,37 @@ const sidebar = {
   ],
 };
 
-export default function Blog() {
+export async function getStaticProps() {
+  const posts = []
+  const fs = require('fs');
+  const files = fs.readdirSync('./pages/_posts')
+  files.forEach(async file => {
+    const post = await import(`./_posts/${file}`);
+    posts.push(`${post.default}`);
+  });
+  return {props: {posts}}
+}
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: purple[500],
+    },
+    secondary: {
+      main: green[500],
+    },
+  },
+});
+
+const Blog = function (props) {
   const classes = useStyles();
+  const { posts } = props;
 
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="Blog" sections={sections} />
+        <Header title="Roger-Almeida.com" sections={sections} />
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
@@ -116,6 +139,8 @@ export default function Blog() {
         </main>
       </Container>
       <Footer title="Footer" description="Something here to give the footer a purpose!" />
-    </React.Fragment>
+    </ThemeProvider>
   );
 }
+
+export default withTheme(Blog);

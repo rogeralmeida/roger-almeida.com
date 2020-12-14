@@ -32,7 +32,7 @@ export default function Sidebar(props) {
         Archives
       </Typography>
       {archives.map((archive) => (
-        <Link display="block" variant="body1" href={archive.url} key={archive.title}>
+        <Link id={archive.title} display="block" variant="body1" href={archive.url} key={archive.title}>
           {archive.title}
         </Link>
       ))}
@@ -40,12 +40,12 @@ export default function Sidebar(props) {
         Social
       </Typography>
       {social.map((network) => (
-        <Link display="block" variant="body1" href="#" key={network}>
+        <Link display="block" variant="body1" href="#" key={network.name}>
           <Grid container direction="row" spacing={1} alignItems="center">
-            <Grid item>
+            <Grid item key={network.name+'icon'}>
               <network.icon />
             </Grid>
-            <Grid item>{network.name}</Grid>
+            <Grid item key={network.name+'name'}>{network.name}</Grid>
           </Grid>
         </Link>
       ))}
