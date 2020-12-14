@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Markdown from './Markdown';
-import { Card, CardContent, CardActionArea, CardMedia } from '@material-ui/core';
+import { Card, CardContent, CardActionArea, CardMedia, CardActions, Button, withTheme } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   markdown: {
@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1)
   }
 }));
+const Main: React.FC = (props) => {
 
-export default function Main(props) {
   const classes = useStyles();
-  const { posts, title } = props;
+  const { posts } = props;
 
   return (
     <Grid item xs={12} md={8}>
@@ -41,6 +41,11 @@ export default function Main(props) {
                 { post.excerpt}
               </Markdown>
             </CardContent>
+            <CardActions>
+              <Button size="small" color="primary">
+                More...
+              </Button>
+            </CardActions>
           </Card>
         </>
       ))}
@@ -52,3 +57,5 @@ Main.propTypes = {
   posts: PropTypes.array,
   title: PropTypes.string,
 };
+
+export default withTheme(Main);

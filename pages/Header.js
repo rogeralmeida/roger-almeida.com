@@ -31,17 +31,19 @@ export default function Header(props) {
   const { sections, title } = props;
 
   return (
-    <AppBar>
-      <Typography
-        component="h2"
-        variant="h5"
-        color="inherit"
-        align="center"
-        noWrap
-        className={classes.toolbarTitle}
-      >
-      {title}
-      </Typography>
+    <AppBar position="sticky">
+      <Toolbar>
+        <Typography
+          component="h2"
+          variant="h5"
+          color="inherit"
+          align="center"
+          noWrap
+          className={classes.toolbarTitle}
+        >
+        {title}
+        </Typography>
+      </Toolbar>
     </AppBar>
   );
 }
