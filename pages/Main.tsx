@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Markdown from './Markdown';
 import { Card, CardContent, CardActionArea, CardMedia, CardActions, Button, withTheme } from '@material-ui/core';
+import Link from 'next/link'
 
 const useStyles = makeStyles((theme) => ({
   markdown: {
@@ -16,15 +17,14 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1)
   }
 }));
-const Main: React.FC = (props) => {
 
+const Main: React.FC = (props: any) => {
   const classes = useStyles();
   const { posts } = props;
-
   return (
     <Grid item xs={12} md={8}>
       {posts.map((post) => (
-        <>
+        <React.Fragment>
           <Divider />
           <Card className={classes.card}>
             <CardActionArea>
@@ -42,12 +42,15 @@ const Main: React.FC = (props) => {
               </Markdown>
             </CardContent>
             <CardActions>
-              <Button size="small" color="primary">
-                More...
-              </Button>
+              <Link href={`/posts/${post.data.slug}`} >
+                <Button size="small" color="primary" key={post.data.slug}>
+                  More...
+                </Button>
+              </Link>
             </CardActions>
           </Card>
-        </>
+          <br/>
+        </React.Fragment>
       ))}
     </Grid>
   );
