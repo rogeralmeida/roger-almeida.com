@@ -1,24 +1,24 @@
-import { Container, CssBaseline, Divider, Grid, makeStyles, ThemeProvider, Typography, withTheme } from "@material-ui/core";
+import { Breadcrumbs, Container, CssBaseline, Divider, Grid, makeStyles, ThemeProvider, Typography, withTheme } from "@material-ui/core";
 import React from 'react';
-import Footer from "../Footer";
-import Header from "../Header";
-import Markdown from "../Markdown";
-import Sidebar from "../Sidebar";
-import theme from '../theme';
+import Footer from "../../lib/components/Footer";
+import Header from "../../lib/components/Header";
+import Markdown from "../../lib/components/Markdown";
+import Sidebar from "../../lib/components/Sidebar";
+import theme from '../../lib/theme';
+import Link from 'next/link'
 
 const matter = require('gray-matter');
 const fs     = require('fs');
 
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
-    marginTop: theme.spacing(3),
+    // marginTop: theme.spacing(3),
   },
 }));
 
 export async function getStaticPaths() {
-  const fs     = require('fs');
-  console.log('PWd: ', process.cwd()) 
-  const files = fs.readdirSync('pages/_posts');
+  const fs         = require('fs');
+  const files      = fs.readdirSync('pages/_posts');
   const postsPaths = []
   files.forEach(async (file: string) => {
     postsPaths.push({params: {post: file}})
@@ -44,6 +44,12 @@ const Post: React.FC = (props: any) => {
         <Header title="Roger-Almeida.com"/>
         <main>
           <Grid container spacing={5} lg={12} className={classes.mainGrid}>
+            <Grid item lg={12}>
+              <Breadcrumbs aria-label="breadcrumbs">
+                <Link href="/"><a>Home</a></Link>
+                <Typography color="textPrimary">{post.data.title}</Typography>
+              </Breadcrumbs>
+            </Grid>
             <Grid item lg={8}>
               <Typography variant="h2">
                 {post.data.title}

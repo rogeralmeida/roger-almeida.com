@@ -3,11 +3,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, ThemeProvider, withTheme } from '@material-ui/core/styles';
 import React from 'react';
-import Footer from './Footer';
-import Header from './Header';
-import Main from './Main';
-import Sidebar from './Sidebar';
-import theme from './theme'
+import Footer from '../lib/components/Footer';
+import Header from '../lib/components/Header';
+import PostList from '../lib/components/post-list';
+import Sidebar from '../lib/components/Sidebar';
+import theme from '../lib/theme'
 
 const matter = require('gray-matter');
 
@@ -57,7 +57,7 @@ export async function getStaticProps() {
 }
 
 
-const Blog = function (props) {
+const Blog = function (props: any) {
   const classes = useStyles();
   const { posts } = props;
 
@@ -68,7 +68,7 @@ const Blog = function (props) {
         <Header title="Roger-Almeida.com" sections={sections} />
         <main>
           <Grid container spacing={5} className={classes.mainGrid}>
-            <Main posts={posts} />
+            <PostList posts={posts} />
             <Sidebar />
           </Grid>
         </main>
