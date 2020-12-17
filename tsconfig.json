@@ -7,15 +7,18 @@
       "esnext"
     ],
     "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "strict": true,
     "jsx": "preserve"
   },
   "include": [

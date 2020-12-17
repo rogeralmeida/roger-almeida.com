@@ -1,19 +1,18 @@
-import React from 'react';
+import { Avatar, Chip, createStyles, Theme, withStyles, WithStyles, withTheme } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import { Avatar } from '@material-ui/core';
+import React from 'react';
 
-const useStyles = makeStyles((theme) => ({
+
+const useStyles = (theme: Theme) => createStyles({
   sidebarAboutBox: {
     padding: theme.spacing(2),
-    backgroundColor: theme.palette.primary,
+    backgroundColor: theme.palette.primary.main,
   },
   sidebarSection: {
     marginTop: theme.spacing(3),
@@ -23,7 +22,14 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(7),
     height: theme.spacing(7),
   }
-}));
+});
+
+interface SidebarPropos extends WithStyles<typeof useStyles> {
+  archives: string[],
+  description: string,
+  social: string[],
+  title: string
+};
 
 const sidebar = {
   title: 'About',
@@ -48,9 +54,10 @@ const sidebar = {
     { name: 'Facebook', icon: FacebookIcon },
   ],
 };
-export default function Sidebar(props) {
-  const classes = useStyles();
-  const { archives, description, social, title } = sidebar;
+
+const Sidebar: React.FC<SidebarPropos> = (props) => {
+  const { classes } = props;
+  const { archives, social } = sidebar;
 
   return (
     <Grid item xs={12} md={4}>
@@ -63,6 +70,11 @@ export default function Sidebar(props) {
           I had the opportunity of playing different roles during my career, the ones I enjoyed the most were developer, solution architect and Delivery Lead.
           This is my personal blog, where I post way less often than what I predicted.</Typography>
       </Paper>
+      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
+        tags
+      </Typography>
+      <Chip label="Agile"/>
+      <Chip label="Delivery"/>
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
         Archives
       </Typography>
@@ -88,9 +100,4 @@ export default function Sidebar(props) {
   );
 }
 
-Sidebar.propTypes = {
-  archives: PropTypes.array,
-  description: PropTypes.string,
-  social: PropTypes.array,
-  title: PropTypes.string,
-};
+export default withStyles(useStyles)(Sidebar)
