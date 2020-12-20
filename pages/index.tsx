@@ -52,7 +52,7 @@ const Blog: React.FC<BlogProps> = (props) => {
           </Grid>
         </main>
       </Container>
-      <Footer title="Footer" description="Something here to give the footer a purpose!" />
+      <Footer title="roger-almeida.com" description="May the code be with you!" />
     </ThemeProvider>
   );
 }
