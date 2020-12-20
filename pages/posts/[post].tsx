@@ -46,7 +46,7 @@ const Post: React.FC<PostProps> = (props) => {
     const { title } = post.data
     const { content } = post
     mainContent = (
-      <Grid container spacing={5} lg={12} className={classes.mainGrid}>
+      <Grid container spacing={5} className={classes.mainGrid}>
         <Grid item lg={12}>
           <Breadcrumbs aria-label="breadcrumbs">
             <Link href="/"><a>Home</a></Link>
