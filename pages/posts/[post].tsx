@@ -1,66 +1,78 @@
-import { Breadcrumbs, Container, CssBaseline, Divider, Grid, makeStyles, ThemeProvider, Typography, withTheme } from "@material-ui/core";
+import { Breadcrumbs, Container, createStyles, CssBaseline, Divider, Grid, Theme, ThemeProvider, Typography, withStyles, WithStyles } from "@material-ui/core";
+import { GetStaticPaths, GetStaticProps } from "next";
+import Link from 'next/link';
 import React from 'react';
 import Footer from "../../lib/components/Footer";
 import Header from "../../lib/components/Header";
 import Markdown from "../../lib/components/Markdown";
 import Sidebar from "../../lib/components/Sidebar";
 import theme from '../../lib/theme';
-import Link from 'next/link'
 
 const matter = require('gray-matter');
 const fs     = require('fs');
+interface PostProps extends WithStyles {
+  post: Post
+}
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = (theme: Theme) => createStyles({
   mainGrid: {
-    // marginTop: theme.spacing(3),
+    marginTop: theme.spacing(0),
   },
-}));
+});
 
-export async function getStaticPaths() {
-  const fs         = require('fs');
-  const files      = fs.readdirSync('pages/_posts');
-  const postsPaths = []
+export const getStaticPaths: GetStaticPaths =  async () => {
+  const fs                          = require('fs');
+  const files                       = fs.readdirSync('pages/_posts');
+  const postsPaths: {params: any}[] = []
   files.forEach(async (file: string) => {
     postsPaths.push({params: {post: file}})
   })
   return { paths: postsPaths, fallback: true }
 }
 
-export async function getStaticProps(context) {
-  const postSlug = context.params.post
+export const getStaticProps: GetStaticProps =  async context => {
+  const postSlug = context.params?.post
   const postFile = fs.readFileSync(`pages/_posts/${postSlug}.md`)
   const post     = matter(`${postFile}`, {excerpt_separator: '<!-- more -->'});
+  console.log('Post to be rendered: ', post)
   return { props: {post: post} }
 }
 
-const Post: React.FC = (props: any) => {
-  const classes     = useStyles()
-  const { post }    = props
-  const { content } = post
+const Post: React.FC<PostProps> = (props) => {
+  console.log('About to render post')
+  const { post, classes }    = props
+  let mainContent = (<h1>Loading...</h1>)
+  if (post){
+    const { title } = post.data
+    const { content } = post
+    mainContent = (
+      <Grid container spacing={5} lg={12} className={classes.mainGrid}>
+        <Grid item lg={12}>
+          <Breadcrumbs aria-label="breadcrumbs">
+            <Link href="/"><a>Home</a></Link>
+            <Typography color="textPrimary">{title}</Typography>
+          </Breadcrumbs>
+        </Grid>
+        <Grid item lg={8}>
+          <Typography variant="h2">
+            {title}
+          </Typography>
+          <Divider />
+          <Markdown>
+            { content === undefined? "## hi" : content }
+          </Markdown>
+        </Grid>
+        <Sidebar tags={["amor"]}/>
+      </Grid>
+    )
+  }
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="lg">
         <Header title="Roger-Almeida.com"/>
         <main>
-          <Grid container spacing={5} lg={12} className={classes.mainGrid}>
-            <Grid item lg={12}>
-              <Breadcrumbs aria-label="breadcrumbs">
-                <Link href="/"><a>Home</a></Link>
-                <Typography color="textPrimary">{post.data.title}</Typography>
-              </Breadcrumbs>
-            </Grid>
-            <Grid item lg={8}>
-              <Typography variant="h2">
-                {post.data.title}
-              </Typography>
-              <Divider />
-              <Markdown>
-                { content === undefined? "## hi" : content }
-              </Markdown>
-            </Grid>
-            <Sidebar />
-          </Grid>
+          { mainContent }
         </main>
       </Container>
       <Footer title="Footer" description="Something here to give the footer a purpose!" />
@@ -68,4 +80,4 @@ const Post: React.FC = (props: any) => {
   )
 }
 
-export default withTheme(Post);
+export default withStyles(useStyles)(Post);

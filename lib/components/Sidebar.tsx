@@ -25,10 +25,7 @@ const useStyles = (theme: Theme) => createStyles({
 });
 
 interface SidebarPropos extends WithStyles<typeof useStyles> {
-  archives: string[],
-  description: string,
-  social: string[],
-  title: string
+  tags: string[],
 };
 
 const sidebar = {
@@ -56,7 +53,7 @@ const sidebar = {
 };
 
 const Sidebar: React.FC<SidebarPropos> = (props) => {
-  const { classes } = props;
+  const { classes, tags } = props;
   const { archives, social } = sidebar;
 
   return (
@@ -73,8 +70,9 @@ const Sidebar: React.FC<SidebarPropos> = (props) => {
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
         tags
       </Typography>
-      <Chip label="Agile"/>
-      <Chip label="Delivery"/>
+      { tags.map(tag => (
+        <Chip label={tag} key={`tag=${tag}`}/>
+      ))}
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
         Archives
       </Typography>

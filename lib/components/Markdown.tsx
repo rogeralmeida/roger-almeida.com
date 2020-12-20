@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactMarkdown from 'markdown-to-jsx';
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import { MarkdownOptions } from 'markdown-to-jsx';
 
-const styles = (theme) => ({
+const styles = (theme: Theme) => createStyles({
   listItem: {
     marginTop: theme.spacing(1),
   },
 });
 
-const options = {
+interface MarkdownProps extends WithStyles {}
+
+
+const defaultOptions: MarkdownOptions = {
   overrides: {
     h1: {
       component: Typography,
@@ -28,15 +32,19 @@ const options = {
     p: { component: Typography, props: { paragraph: true } },
     a: { component: Link },
     li: {
-      component: withStyles(styles)(({ classes, ...props }) => (
-        <li className={classes.listItem}>
-          <Typography component="span" {...props} />
-        </li>
-      )),
+      // component: withStyles(styles)(({ classes, ...props }: React.FC<WithStyles>) => {
+      //   return (
+      //     <li className={classes.listItem}>
+      //       <Typography component="span" {...props} />
+      //     </li>
+      //   );
+      // }),
     },
   },
 };
 
-export default function Markdown(props) {
-  return <ReactMarkdown options={options} {...props} />;
+const Markdown: React.FC<MarkdownProps> = (props) => {
+  return ( 
+    <ReactMarkdown options={defaultOptions} {...props} />);
 }
+export default withStyles(styles)(Markdown)

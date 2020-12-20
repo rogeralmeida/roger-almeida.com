@@ -1,11 +1,15 @@
-import { AppBar, Link } from '@material-ui/core';
+import { AppBar, createStyles, Link, Theme, withStyles, WithStyles } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const useStyles = makeStyles((theme) => ({
+interface HeaderPropos extends WithStyles {
+  title: string
+}
+
+const useStyles = (theme: Theme) => createStyles({
   toolbar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
@@ -20,12 +24,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     flexShrink: 0,
   },
-}));
+});
 
-export default function Header(props) {
-  const classes = useStyles();
-  const { sections, title } = props;
-
+const Header: React.FC<HeaderPropos> = props => {
+  const { title, classes} = props;
   return (
     <AppBar position="sticky">
       <Toolbar>
@@ -43,8 +45,4 @@ export default function Header(props) {
     </AppBar>
   );
 }
-
-Header.propTypes = {
-  sections: PropTypes.array,
-  title: PropTypes.string,
-};
+export default withStyles(useStyles)(Header)

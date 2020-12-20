@@ -1,7 +1,7 @@
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles, ThemeProvider, withTheme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme, ThemeProvider, withStyles, WithStyles, withTheme } from '@material-ui/core/styles';
 import React from 'react';
 import Footer from '../lib/components/Footer';
 import Header from '../lib/components/Header';
@@ -11,41 +11,17 @@ import theme from '../lib/theme'
 
 const matter = require('gray-matter');
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = (theme: Theme) => createStyles({
   mainGrid: {
     marginTop: theme.spacing(3),
   },
-}));
-
-const sections = [
-  { title: 'Technology', url: '#' },
-  { title: 'Design', url: '#' },
-  { title: 'Culture', url: '#' },
-  { title: 'Business', url: '#' },
-  { title: 'Politics', url: '#' },
-  { title: 'Opinion', url: '#' },
-  { title: 'Science', url: '#' },
-  { title: 'Health', url: '#' },
-  { title: 'Style', url: '#' },
-  { title: 'Travel', url: '#' },
-];
-
-const mainFeaturedPost = {
-  title: 'Title of a longer featured blog post',
-  description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-  image: 'https://source.unsplash.com/random',
-  imgText: 'main image description',
-  linkText: 'Continue reading…',
-};
-
-const featuredPosts = [];
-
+});
 
 export async function getStaticProps() {
-  const posts = []
-  const fs     = require('fs');
-  const files = fs.readdirSync('./pages/_posts');
+  const posts: Post[]  = []
+  const fs             = require('fs');
+  const files          = fs.readdirSync('./pages/_posts');
+  const tags: string[] = []
   files.forEach(async (file: string) => {
     const postFile       = await import(`./_posts/${file}`);
     const post           = matter(`${postFile.default}`, {excerpt_separator: '<!-- more -->'});
@@ -53,23 +29,26 @@ export async function getStaticProps() {
           post.data.slug = `${file.substring(0, file.length - 3)}`
     posts.push({...post });
   });
-  return {props: {posts}}
+  return {props: {posts, tags}}
 }
 
+interface BlogProps extends WithStyles {
+  posts: Post[],
+  tags: string[]
+}
 
-const Blog = function (props: any) {
-  const classes = useStyles();
-  const { posts } = props;
+const Blog: React.FC<BlogProps> = (props) => {
+  const { classes, posts, tags } = props;
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="Roger-Almeida.com" sections={sections} />
+        <Header title="Roger-Almeida.com" />
         <main>
           <Grid container spacing={5} className={classes.mainGrid}>
             <PostList posts={posts} />
-            <Sidebar />
+            <Sidebar tags={tags}/>
           </Grid>
         </main>
       </Container>
@@ -78,4 +57,4 @@ const Blog = function (props: any) {
   );
 }
 
-export default withTheme(Blog);
+export default withStyles(useStyles)(Blog);
