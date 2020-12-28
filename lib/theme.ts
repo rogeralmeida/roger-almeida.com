@@ -1,5 +1,5 @@
-import { createMuiTheme } from "@material-ui/core";
-import { red } from "@material-ui/core/colors";
+import { createMuiTheme } from '@material-ui/core';
+import { red } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
@@ -13,6 +13,9 @@ const theme = createMuiTheme({
       main: red.A400,
     },
     type: 'light',
+  },
+  typography: {
+    fontFamily: 'Roboto',
   },
 });
 

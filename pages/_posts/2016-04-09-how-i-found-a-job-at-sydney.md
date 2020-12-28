@@ -6,8 +6,11 @@ cover_picture: "/images/responsive/dan-freeman-399586.png"
 image: "/images/responsive/dan-freeman-399586.png"
 banner_image: "/images/responsive/Sydney-{width}.{ext}"
 comments: true
-categories: job, interview, Sydney, career
-featured: true
+tags: 
+  - job
+  - interview
+  - sydney
+  - career
 ---
 In the last months I have answered the same recurring question: **How did you find a job in Sydney?**
 This post is a attempt to have a guide to point to describing some components of my journey to Sydney.

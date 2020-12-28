@@ -3,7 +3,10 @@ layout: post
 title: "Mary Pretty's journey"
 date: 2020-11-26 00:53:31 +1000
 cover_picture: "/images/indian-girl.png"
-excerpt: Last week I had a catch-up with an ex-colleague. We use to run a DevOps team together at [Tyro](http://www.tyro.com). He was, and still is the tech lead, and I was Delivery Lead/People Manager
+tags:
+  - motivational
+  - tyro
+  - women-in-tech
 ---
 
 Last week I had a catch-up with an ex-colleague. We use to run a DevOps team together at [Tyro](http://www.tyro.com). He was, and still is the tech lead, and I was Delivery Lead/People Manager.

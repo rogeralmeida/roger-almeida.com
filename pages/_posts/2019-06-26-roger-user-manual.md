@@ -3,7 +3,8 @@ layout: post
 title: "Roger's user manual"
 date: 2019-06-26 00:53:31 +1000
 cover_picture: "/images/open-books.png"
-featured: true
+tags:
+  - manual
 ---
 
 This post captures my style, thinking process and how to better interact with me. The intention is to have a place where I can point people to when they want to learn how to better collaborate with me.
