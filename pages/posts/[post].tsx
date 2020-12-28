@@ -34,12 +34,10 @@ export const getStaticProps: GetStaticProps =  async context => {
   const postSlug = context.params?.post
   const postFile = fs.readFileSync(`pages/_posts/${postSlug}.md`)
   const post     = matter(`${postFile}`, {excerpt_separator: '<!-- more -->'});
-  console.log('Post to be rendered: ', post)
   return { props: {post: post} }
 }
 
 const Post: React.FC<PostProps> = (props) => {
-  console.log('About to render post')
   const { post, classes }    = props
   let mainContent = (<h1>Loading...</h1>)
   if (post){

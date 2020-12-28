@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, makeStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
 
 function Copyright() {
   return (
@@ -18,15 +17,16 @@ function Copyright() {
   );
 }
 
-const footerStyles = (theme: Theme) => createStyles({
-  footer: {
-    // backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing(8),
-    padding: theme.spacing(6, 0),
-  },
-});
+const footerStyles = (theme: Theme) =>
+  createStyles({
+    footer: {
+      // backgroundColor: theme.palette.background.paper,
+      marginTop: theme.spacing(8),
+      padding: theme.spacing(6, 0),
+    },
+  });
 
-const Footer: React.FC<WithStyles> = (props) => {
+const Footer: React.FC<WithStyles> = (props: WithStyles) => {
   const { classes } = props;
 
   return (
@@ -42,5 +42,5 @@ const Footer: React.FC<WithStyles> = (props) => {
       </Container>
     </footer>
   );
-}
-export default withStyles(footerStyles)(Footer)
+};
+export default withStyles(footerStyles)(Footer);

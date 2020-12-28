@@ -1,50 +1,62 @@
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, createStyles, Link, makeStyles, Theme, Typography, withStyles, WithStyles, withTheme } from '@material-ui/core'
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  createStyles,
+  Link,
+  Theme,
+  Typography,
+  withStyles,
+  WithStyles,
+} from '@material-ui/core';
 import Markdown from 'markdown-to-jsx';
-import React from 'react'
+import React from 'react';
 
 interface PostCardProps extends WithStyles {
-  post: Post,
-  key?: string
+  post: Post;
 }
 
-const useStyles = (theme: Theme) => createStyles({
-  markdown: {
-    ...theme.typography.body2,
-    padding: theme.spacing(3, 0),
-  },
-  card: {
-    padding: theme.spacing(1),
-    marginBottom: theme.spacing(3)
-  }
-});
+const useStyles = (theme: Theme) =>
+  createStyles({
+    markdown: {
+      // ...theme.typography.body2, this breaks the component type on post-list.tsx
+      padding: theme.spacing(3, 0),
+    },
+    card: {
+      padding: theme.spacing(1),
+      marginBottom: theme.spacing(3),
+    },
+  });
 
-const PostCard: React.FC<PostCardProps> = props => {
-  const { post, classes } = props
+const PostCard: React.FC<PostCardProps> = (props: PostCardProps): JSX.Element => {
+  const { post, classes } = props;
+  const { excerpt, data } = post;
+  const { slug, cover_picture, title } = data;
   return (
-    <Card className={classes.card} key={`card-${post.data.slug}`}>
+    <Card className={classes.card} key={`card-${slug}`}>
       <CardActionArea>
-        <CardMedia
-          component="img"
-          image={post.data.cover_picture}
-        />
+        <CardMedia component="img" image={cover_picture} />
       </CardActionArea>
       <CardContent>
         <Typography gutterBottom variant="h3" component="h3">
-          { post.data.title }
+          {title}
         </Typography>
-        <Markdown className={classes.markdown} key={post.data.slug}>
-          { post.excerpt}
+        <Markdown className={classes.markdown} key={slug}>
+          {excerpt}
         </Markdown>
       </CardContent>
       <CardActions>
-        <Link href={`/posts/${post.data.slug}`} key={`link-${post.data.slug}`}>
-          <Button size="small" color="primary" key={`button-${post.data.slug}`}>
+        <Link href={`/posts/${slug}`} key={`link-${slug}`}>
+          <Button size="small" color="primary" key={`button-${slug}`}>
             More...
           </Button>
         </Link>
       </CardActions>
     </Card>
   );
-}
+};
 
-export default withStyles(useStyles)(PostCard)
+export default withStyles(useStyles)(PostCard);
