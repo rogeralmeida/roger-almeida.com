@@ -24,6 +24,8 @@ import matter from 'gray-matter';
 import fs from 'fs';
 import { Skeleton } from '@material-ui/lab';
 import { allTags } from '../../lib/services/posts-service';
+import Image from 'next/image';
+
 interface PostProps extends WithStyles {
   post: Post;
   tags: string[];
@@ -66,6 +68,7 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
   if (post) {
     title = post.data.title;
     content = post.content;
+    const { cover_picture } = post.data;
     breadcrumbs = (
       <Breadcrumbs aria-label="breadcrumbs">
         <Link href="/">
@@ -76,6 +79,7 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
     );
     mainContent = (
       <>
+        <Image src={cover_picture} layout="responsive" width="100%" height="35em" />
         <Typography variant="h2">{title}</Typography>
         <Divider />
         <Markdown>{content}</Markdown>
