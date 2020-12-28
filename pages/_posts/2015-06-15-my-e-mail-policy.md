@@ -6,6 +6,14 @@ cover_picture: "/images/responsive/mathyas-kurmann-102977.png"
 image: "/images/responsive/mathyas-kurmann-102977.png"
 excerpt: "An unconventional way of dealing with e-mail"
 featured: true
+tags:
+  - email
+  - e-mail
+  - productivity
+  - professional
+  - atos
+  - pomodoro
+  - thoughtworks
 ---
 
 When I was working for [Atos](http://www.atos.net), the company's CEO started a [zero email initiative](http://atos.net/en-us/home/we-are/zero-email.html). His aim was for the employees not to use email for internal communications. I remembered what I thought about it: "It's impossible".
