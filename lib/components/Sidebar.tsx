@@ -3,11 +3,13 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
+import LaunchIcon from '@material-ui/icons/Launch';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import React from 'react';
+import { Skeleton } from '@material-ui/lab';
 import * as LinkNext from 'next/link';
+import React from 'react';
 
 const useStyles = (theme: Theme) =>
   createStyles({
@@ -47,16 +49,28 @@ const sidebar = {
     { title: 'April 1999', url: '#' },
   ],
   social: [
-    { name: 'GitHub', icon: GitHubIcon },
-    { name: 'Twitter', icon: TwitterIcon },
-    { name: 'Facebook', icon: FacebookIcon },
+    { name: 'GitHub', icon: GitHubIcon, href: 'https://github.com/rogeralmeida' },
+    { name: 'Twitter', icon: TwitterIcon, href: 'https://twitter.com/rogeralmeidacom' },
+    { name: 'Keybase', icon: GroupAddIcon, href: 'https://keybase.io/rogeralmeida' },
   ],
 };
 
 const Sidebar: React.FC<SidebarPropos> = (props: SidebarPropos) => {
-  const { classes, tags } = props;
-  const { archives, social } = sidebar;
-
+  const { classes } = props;
+  const { social } = sidebar;
+  const tags = props.tags || [];
+  let tagChips = <Skeleton height={100} />;
+  if (tags.length > 0) {
+    tagChips = (
+      <>
+        {tags.map((tag) => (
+          <LinkNext.default href={`/tags/${tag}`} key={`tag-link-${tag}`}>
+            <Chip label={tag} key={`tag-chip-${tag}`} />
+          </LinkNext.default>
+        ))}
+      </>
+    );
+  }
   return (
     <Grid item xs={12} md={4}>
       <Paper className={classes.sidebarAboutBox}>
@@ -74,30 +88,21 @@ const Sidebar: React.FC<SidebarPropos> = (props: SidebarPropos) => {
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
         tags
       </Typography>
-      {tags.map((tag) => (
-        <LinkNext.default href={`/tags/${tag}`} key={`tag-${tag}`}>
-          <Chip label={tag} key={`tag=${tag}`} />
-        </LinkNext.default>
-      ))}
-      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-        Archives
-      </Typography>
-      {archives.map((archive) => (
-        <Link id={archive.title} display="block" variant="body1" href={archive.url} key={archive.title}>
-          {archive.title}
-        </Link>
-      ))}
+      {tagChips}
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
         Social
       </Typography>
       {social.map((network) => (
-        <Link display="block" variant="body1" href="#" key={network.name}>
+        <Link display="block" variant="body1" href={network.href} key={network.name} target="_blank">
           <Grid container direction="row" spacing={1} alignItems="center">
-            <Grid item key={network.name + 'icon'}>
+            <Grid item key={network.name + '-icon'}>
               <network.icon />
             </Grid>
-            <Grid item key={network.name + 'name'}>
+            <Grid item key={network.name + '-name'}>
               {network.name}
+            </Grid>
+            <Grid item key={network.name + '-launch'}>
+              <LaunchIcon />
             </Grid>
           </Grid>
         </Link>

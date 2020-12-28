@@ -23,7 +23,7 @@ const useStyles = (theme: Theme) =>
   createStyles({
     markdown: {
       // ...theme.typography.body2, this breaks the component type on post-list.tsx
-      padding: theme.spacing(3, 0),
+      padding: theme.spacing(1, 0),
     },
     card: {
       padding: theme.spacing(1),
@@ -50,7 +50,7 @@ const PostCard: React.FC<PostCardProps> = (props: PostCardProps): JSX.Element =>
       </CardContent>
       <CardActions>
         <Link href={`/posts/${slug}`} key={`link-${slug}`}>
-          <Button size="small" color="primary" key={`button-${slug}`}>
+          <Button size="small" color="primary" variant="contained" key={`button-${slug}`}>
             More...
           </Button>
         </Link>
