@@ -10,6 +10,7 @@ import Sidebar from '../lib/components/Sidebar';
 import theme from '../lib/theme';
 import matter from 'gray-matter';
 import fs from 'fs';
+import loadPostsInDescOrder from '../lib/services/posts-service';
 
 const useStyles = (theme: Theme) =>
   createStyles({
@@ -19,24 +20,22 @@ const useStyles = (theme: Theme) =>
   });
 
 export const getStaticProps: () => Promise<{ props: { posts: Post[]; tags: string[] } }> = async () => {
-  const posts: Post[] = [];
-  const files = fs.readdirSync('./pages/_posts');
+  const rawPosts = loadPostsInDescOrder();
   const tags: string[] = [];
-  files.map((file: string) => {
-    const postFile = fs.readFileSync(`pages/_posts/${file}`);
-    const post = matter(`${postFile}`, { excerpt_separator: '<!-- more -->' });
-    const slug = `${file.substring(0, file.length - 3)}`;
-    const { content } = post;
-    const excerpt = post.excerpt || 'Continue reading...';
-    const { cover_picture, title, date } = post.data;
+  const posts: Post[] = [];
+  rawPosts.map((rawPost) => {
+    const slug = rawPost.data.slug;
+    const { content } = rawPost;
+    const excerpt = rawPost.excerpt || 'Continue reading...';
+    const { cover_picture, title, date } = rawPost.data;
     posts.push({ content, excerpt, data: { slug, cover_picture, title, date, tags } });
+
+    const postTags: string[] = rawPost.data.tags || [];
+    if (postTags.length > 0) {
+      tags.push(...postTags);
+    }
   });
-  const sortedPosts = posts.sort((a: Post, b: Post) => {
-    const bTime = new Date(b.data.date).getTime();
-    const aTime = new Date(a.data.date).getTime();
-    return bTime - aTime;
-  });
-  return { props: { posts: sortedPosts, tags } };
+  return { props: { posts: posts, tags } };
 };
 
 interface BlogProps extends WithStyles {
