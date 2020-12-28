@@ -58,7 +58,7 @@ const Sidebar: React.FC<SidebarPropos> = (props: SidebarPropos) => {
 
   return (
     <Grid item xs={12} md={4}>
-      <Paper elevation={0} className={classes.sidebarAboutBox}>
+      <Paper className={classes.sidebarAboutBox}>
         <Typography variant="h6" gutterBottom>
           Welcome
         </Typography>
