@@ -22,10 +22,9 @@ export const getStaticProps: () => Promise<{ props: { posts: Post[]; tags: strin
   const posts: Post[] = [];
   const files = fs.readdirSync('./pages/_posts');
   const tags: string[] = [];
-  files.forEach(async (file: string) => {
-    const postFile = await import(`./_posts/${file}`);
-    const post = matter(`${postFile.default}`, { excerpt_separator: '<!-- more -->' });
-    post.orig = '';
+  files.map((file: string) => {
+    const postFile = fs.readFileSync(`pages/_posts/${file}`);
+    const post = matter(`${postFile}`, { excerpt_separator: '<!-- more -->' });
     const slug = `${file.substring(0, file.length - 3)}`;
     const { content } = post;
     const excerpt = post.excerpt || 'Continue reading...';
@@ -33,7 +32,9 @@ export const getStaticProps: () => Promise<{ props: { posts: Post[]; tags: strin
     posts.push({ content, excerpt, data: { slug, cover_picture, title, date, tags } });
   });
   const sortedPosts = posts.sort((a: Post, b: Post) => {
-    return b.data.date.getTime() - a.data.date.getTime();
+    const bTime = new Date(b.data.date).getTime();
+    const aTime = new Date(a.data.date).getTime();
+    return bTime - aTime;
   });
   return { props: { posts: sortedPosts, tags } };
 };
