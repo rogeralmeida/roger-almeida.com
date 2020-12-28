@@ -5,6 +5,7 @@ import {
   CssBaseline,
   Divider,
   Grid,
+  Paper,
   Theme,
   ThemeProvider,
   Typography,
@@ -19,9 +20,8 @@ import Header from '../../lib/components/Header';
 import Markdown from '../../lib/components/Markdown';
 import Sidebar from '../../lib/components/Sidebar';
 import theme from '../../lib/theme';
-
-const matter = require('gray-matter');
-const fs = require('fs');
+import matter from 'gray-matter';
+import fs from 'fs';
 interface PostProps extends WithStyles {
   post: Post;
 }
@@ -31,10 +31,13 @@ const useStyles = (theme: Theme) =>
     mainGrid: {
       marginTop: theme.spacing(0),
     },
+    postPaper: {
+      padding: theme.spacing(1),
+      marginBottom: theme.spacing(3),
+    },
   });
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const fs = require('fs');
   const files = fs.readdirSync('pages/_posts');
   const postsPaths: { params: any }[] = [];
   files.forEach(async (file: string) => {
@@ -50,7 +53,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return { props: { post: post } };
 };
 
-const Post: React.FC<PostProps> = (props) => {
+const Post: React.FC<PostProps> = (props: PostProps) => {
   const { post, classes } = props;
   let mainContent = <h1>Loading...</h1>;
   if (post) {
@@ -58,18 +61,20 @@ const Post: React.FC<PostProps> = (props) => {
     const { content } = post;
     mainContent = (
       <Grid container spacing={5} className={classes.mainGrid}>
-        <Grid item lg={12}>
-          <Breadcrumbs aria-label="breadcrumbs">
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-            <Typography color="textPrimary">{title}</Typography>
-          </Breadcrumbs>
-        </Grid>
         <Grid item lg={8}>
-          <Typography variant="h2">{title}</Typography>
-          <Divider />
-          <Markdown>{content === undefined ? '## hi' : content}</Markdown>
+          <Paper className={classes.postPaper}>
+            <Breadcrumbs aria-label="breadcrumbs">
+              <Link href="/">
+                <a>Home</a>
+              </Link>
+              <Typography color="textPrimary">{title}</Typography>
+            </Breadcrumbs>
+          </Paper>
+          <Paper className={classes.postPaper}>
+            <Typography variant="h2">{title}</Typography>
+            <Divider />
+            <Markdown>{content === undefined ? '## hi' : content}</Markdown>
+          </Paper>
         </Grid>
         <Sidebar tags={['amor']} />
       </Grid>
