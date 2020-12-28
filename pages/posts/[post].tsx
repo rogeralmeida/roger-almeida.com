@@ -39,7 +39,7 @@ const useStyles = (theme: Theme) =>
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const files = fs.readdirSync('pages/_posts');
-  const postsPaths: { params: any }[] = [];
+  const postsPaths: { params: { post: string } }[] = [];
   files.forEach(async (file: string) => {
     postsPaths.push({ params: { post: file } });
   });
@@ -87,7 +87,7 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
         <Header title="Roger-Almeida.com" />
         <main>{mainContent}</main>
       </Container>
-      <Footer title="Footer" description="Something here to give the footer a purpose!" />
+      <Footer />
     </ThemeProvider>
   );
 };

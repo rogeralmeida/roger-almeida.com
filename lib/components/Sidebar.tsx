@@ -7,6 +7,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import React from 'react';
+import * as LinkNext from 'next/link';
 
 const useStyles = (theme: Theme) =>
   createStyles({
@@ -74,7 +75,9 @@ const Sidebar: React.FC<SidebarPropos> = (props: SidebarPropos) => {
         tags
       </Typography>
       {tags.map((tag) => (
-        <Chip label={tag} key={`tag=${tag}`} />
+        <LinkNext.default href={`/tags/${tag}`} key={`tag-${tag}`}>
+          <Chip label={tag} key={`tag=${tag}`} />
+        </LinkNext.default>
       ))}
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
         Archives

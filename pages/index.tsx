@@ -7,10 +7,8 @@ import Footer from '../lib/components/Footer';
 import Header from '../lib/components/Header';
 import PostList from '../lib/components/post-list';
 import Sidebar from '../lib/components/Sidebar';
+import loadPostsInDescOrder, { buildPostFromRaw } from '../lib/services/posts-service';
 import theme from '../lib/theme';
-import matter from 'gray-matter';
-import fs from 'fs';
-import loadPostsInDescOrder from '../lib/services/posts-service';
 
 const useStyles = (theme: Theme) =>
   createStyles({
@@ -24,16 +22,9 @@ export const getStaticProps: () => Promise<{ props: { posts: Post[]; tags: strin
   const tags: string[] = [];
   const posts: Post[] = [];
   rawPosts.map((rawPost) => {
-    const slug = rawPost.data.slug;
-    const { content } = rawPost;
-    const excerpt = rawPost.excerpt || 'Continue reading...';
-    const { cover_picture, title, date } = rawPost.data;
-    posts.push({ content, excerpt, data: { slug, cover_picture, title, date, tags } });
-
-    const postTags: string[] = rawPost.data.tags || [];
-    if (postTags.length > 0) {
-      tags.push(...postTags);
-    }
+    const post = buildPostFromRaw(rawPost);
+    posts.push(post);
+    tags.push(...post.data.tags);
   });
   return { props: { posts: posts, tags } };
 };
@@ -45,7 +36,6 @@ interface BlogProps extends WithStyles {
 
 const Blog: React.FC<BlogProps> = (props: BlogProps) => {
   const { classes, posts, tags } = props;
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

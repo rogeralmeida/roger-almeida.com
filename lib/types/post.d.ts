@@ -4,7 +4,7 @@ type Post = {
     cover_picture: string;
     title: string;
     date: Date;
-    tags?: string[];
+    tags: string[];
   };
   excerpt: string;
   content: string;
