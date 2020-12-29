@@ -26,25 +26,24 @@ export const buildPostFromRaw: (rawPost: GrayMatterFile<string>) => Post = (rawP
   return { content, excerpt, data: { slug, cover_picture, title, date, tags } };
 };
 
+export const loadRawPost = (fileName: string) => {
+  const postFile = fs.readFileSync(`pages/_posts/${fileName}`);
+  const slug = `${fileName.substring(0, fileName.length - 3)}`;
+  const post = matter(`${postFile}`, { excerpt_separator: '<!-- more -->' });
+  post.data.slug = slug;
+  return post;
+};
+
 const loadPostsInDescOrder: (tag?: string | string[]) => GrayMatterFile<string>[] = (tag = '') => {
   const files = fs.readdirSync('./pages/_posts');
   const posts: GrayMatterFile<string>[] = [];
   files.map((file: string) => {
-    const postFile = fs.readFileSync(`pages/_posts/${file}`);
-    const slug = `${file.substring(0, file.length - 3)}`;
-    const post = matter(`${postFile}`, { excerpt_separator: '<!-- more -->' });
-    post.data.slug = slug;
+    const post = loadRawPost(file);
     if (tag && tag !== '') {
       if (post.data.tags && post.data.tags.includes(tag)) {
-        console.log('adding post: ', file);
-        console.log('   tag: ', tag);
-        console.log('   tags: ', post.data.tags);
         posts.push(post);
       }
     } else {
-      console.log('adding post: ', file);
-      console.log('   tag: ', tag);
-      console.log('   tags: ', post.data.tags);
       posts.push(post);
     }
   });

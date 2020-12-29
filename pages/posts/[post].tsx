@@ -12,19 +12,19 @@ import {
   withStyles,
   WithStyles,
 } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
+import fs from 'fs';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import Footer from '../../lib/components/Footer';
 import Header from '../../lib/components/Header';
 import Markdown from '../../lib/components/Markdown';
 import Sidebar from '../../lib/components/Sidebar';
+import { allTags, buildPostFromRaw, loadRawPost } from '../../lib/services/posts-service';
 import theme from '../../lib/theme';
-import matter from 'gray-matter';
-import fs from 'fs';
-import { Skeleton } from '@material-ui/lab';
-import { allTags } from '../../lib/services/posts-service';
-import Image from 'next/image';
+import Head from 'next/head';
 
 interface PostProps extends WithStyles {
   post: Post;
@@ -53,22 +53,32 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const postSlug = context.params?.post;
-  const postFile = fs.readFileSync(`pages/_posts/${postSlug}.md`);
-  const post = matter(`${postFile}`, { excerpt_separator: '<!-- more -->' });
+  const rawPost = loadRawPost(`${postSlug}.md`);
+  const post = buildPostFromRaw(rawPost);
   const tags = allTags();
   return { props: { post: post, tags } };
 };
 
 const Post: React.FC<PostProps> = (props: PostProps) => {
   const { post, classes, tags } = props;
-  let title = null;
-  let content = null;
   let breadcrumbs = <Skeleton height={25} />;
-  let mainContent = <Skeleton height={1024} variant="rect" animation="wave" />;
+  let mainContent = <Skeleton height={1024} animation="wave" />;
+  let heads = <></>;
   if (post) {
-    title = post.data.title;
-    content = post.content;
-    const { cover_picture } = post.data;
+    console.log('Data: ', post.data);
+    const { title, slug, cover_picture } = post.data;
+    const content = post.content;
+    heads = (
+      <>
+        <meta property="og:title" content={title} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={`https://roger-almeida.com/${cover_picture}`} />
+        <meta property="og:url" content={`https://roger-almeida.com/posts/${slug}`} />
+        <meta property="og:description" content={slug} />
+        <meta property="og:locale" content="en_AU" />
+        <meta property="og:site_name" content="roger-almeida.com" />
+      </>
+    );
     breadcrumbs = (
       <Breadcrumbs aria-label="breadcrumbs">
         <Link href="/">
@@ -82,12 +92,30 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
         <Image src={cover_picture} layout="responsive" width="100%" height="35em" />
         <Typography variant="h2">{title}</Typography>
         <Divider />
+        <br />
+        <div className="ssk-group">
+          {/* <a href="" className="ssk ssk-icon ssk-link"></a> */}
+          <a
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=https://roger-almeida.com/posts/${slug}`}
+            className="ssk ssk-icon ssk-linkedin"
+            target="_blank"
+            rel="noreferrer"
+          ></a>
+          {/* <a href="" className="ssk ssk-icon ssk-twitter"></a> TODO: Add more social networks
+          <a href="" className="ssk ssk-icon ssk-facebook"></a>
+          <a href="" className="ssk ssk-icon ssk-pinterest"></a>
+          <a href="" className="ssk ssk-icon ssk-tumblr"></a>
+          <a href="" className="ssk ssk-icon ssk-whatsapp"></a>
+          <a href="" className="ssk ssk-icon ssk-reddit"></a>
+          <a href="" className="ssk ssk-icon ssk-email"></a> */}
+        </div>
         <Markdown>{content}</Markdown>
       </>
     );
   }
   return (
     <ThemeProvider theme={theme}>
+      <Head>{heads}</Head>
       <CssBaseline />
       <Container maxWidth="lg">
         <Header title="Roger-Almeida.com" />

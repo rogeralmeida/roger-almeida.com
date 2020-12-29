@@ -11,6 +11,7 @@ export default class MyDocument extends Document {
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+          <link rel="stylesheet" href="/social-share-kit/css/social-share-kit.css" type="text/css"></link>
         </Head>
         <body>
           <Main />

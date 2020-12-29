@@ -31,7 +31,7 @@ const defaultOptions: MarkdownOptions = {
       component: Typography,
       props: { gutterBottom: true, variant: 'caption', paragraph: true },
     },
-    p: { component: Typography, props: { paragraph: true, variant: 'body1' } },
+    p: { component: Typography, props: { paragraph: true } },
     a: { component: Link },
     li: {
       component: withStyles(styles)((props: WithStyles) => {
