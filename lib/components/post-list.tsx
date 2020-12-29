@@ -22,11 +22,11 @@ interface PostListProps extends WithStyles {
 const PostList: React.FC<PostListProps> = (props: PostListProps) => {
   const { posts } = props;
   return (
-    <Grid item xs={12} md={8}>
+    <>
       {posts.map((post: Post) => (
         <PostCard post={post} key={`post-card-${post.data.slug}`} />
       ))}
-    </Grid>
+    </>
   );
 };
 

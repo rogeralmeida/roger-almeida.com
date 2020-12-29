@@ -43,7 +43,9 @@ const Blog: React.FC<BlogProps> = (props: BlogProps) => {
         <Header title="Roger-Almeida.com" />
         <main>
           <Grid container spacing={5} className={classes.mainGrid}>
-            <PostList posts={posts} />
+            <Grid item lg={8}>
+              <PostList posts={posts} />
+            </Grid>
             <Sidebar tags={tags} />
           </Grid>
         </main>

@@ -1,10 +1,13 @@
 import {
+  Breadcrumbs,
   Container,
   createStyles,
   CssBaseline,
   Grid,
+  Paper,
   Theme,
   ThemeProvider,
+  Typography,
   withStyles,
   WithStyles,
 } from '@material-ui/core';
@@ -16,12 +19,15 @@ import Header from '../../lib/components/Header';
 import Sidebar from '../../lib/components/Sidebar';
 import { allTags, buildPostFromRaw } from '../../lib/services/posts-service';
 import theme from '../../lib/theme';
+import Link from 'next/link';
 import loadPostsInDescOrder from '../../lib/services/posts-service';
 import PostList from '../../lib/components/post-list';
+import { Skeleton } from '@material-ui/lab';
 
 interface TagProps extends WithStyles {
   posts: Post[];
   tags: string[];
+  tag: string;
 }
 
 const useStyles = (theme: Theme) =>
@@ -58,13 +64,23 @@ export const getStaticProps: GetStaticProps = async (context) => {
     posts.push(post);
   });
   const tags = allTags();
-  return { props: { posts: posts, tags } };
+  return { props: { posts: posts, tags, tag } };
 };
 
 const Post: React.FC<TagProps> = (props: TagProps) => {
-  const { posts, classes, tags } = props;
-  let mainContent = <h1>Loading...</h1>;
+  const { posts, classes, tags, tag } = props;
+  let mainContent = <Skeleton />;
+  let breadcrumbs = <Skeleton />;
   if (posts) {
+    breadcrumbs = (
+      <Breadcrumbs aria-label="breadcrumbs">
+        <Link href="/">
+          <a>Home</a>
+        </Link>
+        <Typography color="textPrimary">tags</Typography>
+        <Typography color="textPrimary">{tag}</Typography>
+      </Breadcrumbs>
+    );
     mainContent = <PostList posts={posts} />;
   }
   return (
@@ -74,7 +90,10 @@ const Post: React.FC<TagProps> = (props: TagProps) => {
         <Header title="Roger-Almeida.com" />
         <main>
           <Grid container spacing={5} className={classes.mainGrid}>
-            {mainContent}
+            <Grid item lg={8}>
+              <Paper className={classes.postPaper}>{breadcrumbs}</Paper>
+              {mainContent}
+            </Grid>
             <Sidebar tags={tags} />
           </Grid>
         </main>
@@ -82,16 +101,6 @@ const Post: React.FC<TagProps> = (props: TagProps) => {
       <Footer />
     </ThemeProvider>
   );
-  // return (
-  //   <ThemeProvider theme={theme}>
-  //     <CssBaseline />
-  //     <Container maxWidth="lg">
-  //       <Header title="Roger-Almeida.com" />
-  //       <main>{mainContent}</main>
-  //     </Container>
-  //     <Footer title="Footer" description="Something here to give the footer a purpose!" />
-  //   </ThemeProvider>
-  // );
 };
 
 export default withStyles(useStyles)(Post);
