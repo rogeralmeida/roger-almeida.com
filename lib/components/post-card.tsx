@@ -49,7 +49,7 @@ const PostCard: React.FC<PostCardProps> = (props: PostCardProps): JSX.Element =>
         </Markdown>
       </CardContent>
       <CardActions>
-        <Link href={`/posts/${slug}`} key={`link-${slug}`}>
+        <Link href={`/posts/${slug}.html`} key={`link-${slug}`}>
           <Button size="small" color="primary" variant="contained" key={`button-${slug}`}>
             More...
           </Button>

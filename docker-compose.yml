@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  deploy:
+    image: dnxsolutions/aws
+    working_dir: /blog
+    volumes:
+      - .:/blog
+    env_file:
+      - .env.local

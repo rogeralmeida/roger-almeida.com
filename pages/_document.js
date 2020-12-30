@@ -4,6 +4,13 @@ import { ServerStyleSheets } from '@material-ui/core/styles';
 import theme from '../lib/theme';
 
 export default class MyDocument extends Document {
+  componentDidMount() {
+    if (typeof window !== 'undefined') {
+      console.log('Window is defined');
+    } else {
+      console.log('Window is NOT defined');
+    }
+  }
   render() {
     return (
       <Html lang="en">

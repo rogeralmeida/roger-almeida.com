@@ -27,7 +27,7 @@ export const buildPostFromRaw: (rawPost: GrayMatterFile<string>) => Post = (rawP
 };
 
 export const loadRawPost = (fileName: string) => {
-  const postFile = fs.readFileSync(`pages/_posts/${fileName}`);
+  const postFile = fs.readFileSync(`_posts/${fileName}`);
   const slug = `${fileName.substring(0, fileName.length - 3)}`;
   const post = matter(`${postFile}`, { excerpt_separator: '<!-- more -->' });
   post.data.slug = slug;
@@ -35,7 +35,7 @@ export const loadRawPost = (fileName: string) => {
 };
 
 const loadPostsInDescOrder: (tag?: string | string[]) => GrayMatterFile<string>[] = (tag = '') => {
-  const files = fs.readdirSync('./pages/_posts');
+  const files = fs.readdirSync('_posts');
   const posts: GrayMatterFile<string>[] = [];
   files.map((file: string) => {
     const post = loadRawPost(file);

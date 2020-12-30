@@ -1,4 +1,5 @@
 import {
+  Box,
   Breadcrumbs,
   Container,
   createStyles,
@@ -13,18 +14,17 @@ import {
   WithStyles,
 } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
-import fs from 'fs';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import Footer from '../../lib/components/Footer';
 import Header from '../../lib/components/Header';
 import Markdown from '../../lib/components/Markdown';
 import Sidebar from '../../lib/components/Sidebar';
-import { allTags, buildPostFromRaw, loadRawPost } from '../../lib/services/posts-service';
+import loadPostsInDescOrder, { allTags, buildPostFromRaw, loadRawPost } from '../../lib/services/posts-service';
 import theme from '../../lib/theme';
 import Head from 'next/head';
+import { GrayMatterFile } from 'gray-matter';
 
 interface PostProps extends WithStyles {
   post: Post;
@@ -43,12 +43,13 @@ const useStyles = (theme: Theme) =>
   });
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const files = fs.readdirSync('pages/_posts');
+  const posts = loadPostsInDescOrder();
   const postsPaths: { params: { post: string } }[] = [];
-  files.forEach(async (file: string) => {
-    postsPaths.push({ params: { post: file } });
+  posts.forEach(async (post: GrayMatterFile<string>) => {
+    const { slug } = post.data;
+    postsPaths.push({ params: { post: slug } });
   });
-  return { paths: postsPaths, fallback: true };
+  return { paths: postsPaths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -89,26 +90,33 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
     );
     mainContent = (
       <>
-        <Image src={cover_picture} layout="responsive" width="100%" height="35em" />
+        <img src={cover_picture} width="100%" />
         <Typography variant="h2">{title}</Typography>
         <Divider />
         <br />
-        <div className="ssk-group">
-          {/* <a href="" className="ssk ssk-icon ssk-link"></a> */}
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=https://roger-almeida.com/posts/${slug}`}
-            className="ssk ssk-icon ssk-linkedin"
-            target="_blank"
-            rel="noreferrer"
-          ></a>
-          {/* <a href="" className="ssk ssk-icon ssk-twitter"></a> TODO: Add more social networks
-          <a href="" className="ssk ssk-icon ssk-facebook"></a>
-          <a href="" className="ssk ssk-icon ssk-pinterest"></a>
-          <a href="" className="ssk ssk-icon ssk-tumblr"></a>
-          <a href="" className="ssk ssk-icon ssk-whatsapp"></a>
-          <a href="" className="ssk ssk-icon ssk-reddit"></a>
-          <a href="" className="ssk ssk-icon ssk-email"></a> */}
-        </div>
+        <Box display="flex" flexDirection="row-reverse" alignContent="center">
+          <Box className="ssk-group">
+            {/* <div className="ssk-group"> */}
+            {/* <a href="" className="ssk ssk-icon ssk-link"></a> */}
+            <a
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=https://roger-almeida.com/posts/${slug}`}
+              className="ssk ssk-icon ssk-linkedin"
+              target="_blank"
+              rel="noreferrer"
+            ></a>
+            {/* <a href="" className="ssk ssk-icon ssk-twitter"></a> TODO: Add more social networks
+              <a href="" className="ssk ssk-icon ssk-facebook"></a>
+              <a href="" className="ssk ssk-icon ssk-pinterest"></a>
+              <a href="" className="ssk ssk-icon ssk-tumblr"></a>
+              <a href="" className="ssk ssk-icon ssk-whatsapp"></a>
+              <a href="" className="ssk ssk-icon ssk-reddit"></a>
+              <a href="" className="ssk ssk-icon ssk-email"></a> */}
+            {/* </div> */}
+          </Box>
+          <Box>
+            <Typography variant="overline">Share it:</Typography>
+          </Box>
+        </Box>
         <Markdown>{content}</Markdown>
       </>
     );

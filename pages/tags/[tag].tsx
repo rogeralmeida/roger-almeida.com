@@ -52,7 +52,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   tags.map((tag: string) => {
     postsPaths.push({ params: { tag } });
   });
-  return { paths: postsPaths, fallback: true };
+  return { paths: postsPaths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
