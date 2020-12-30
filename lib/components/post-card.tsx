@@ -6,7 +6,6 @@ import {
   CardContent,
   CardMedia,
   createStyles,
-  Link,
   Theme,
   Typography,
   withStyles,
@@ -14,6 +13,7 @@ import {
 } from '@material-ui/core';
 import Markdown from 'markdown-to-jsx';
 import React from 'react';
+import Link from 'next/link';
 
 interface PostCardProps extends WithStyles {
   post: Post;
@@ -49,7 +49,7 @@ const PostCard: React.FC<PostCardProps> = (props: PostCardProps): JSX.Element =>
         </Markdown>
       </CardContent>
       <CardActions>
-        <Link href={`/posts/${slug}.html`} key={`link-${slug}`}>
+        <Link href={`/posts/${slug}`} key={`link-${slug}`}>
           <Button size="small" color="primary" variant="contained" key={`button-${slug}`}>
             More...
           </Button>
