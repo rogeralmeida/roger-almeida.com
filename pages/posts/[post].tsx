@@ -67,16 +67,19 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
   let heads = <></>;
   if (post) {
     console.log('Data: ', post.data);
-    const { title, slug, cover_picture } = post.data;
-    const content = post.content;
+    const { title, slug, cover_picture, date } = post.data;
+    const { content, excerpt } = post;
+    const postEncodedURL = encodeURI(`https://roger-almeida.com/posts/${slug}.html`);
     heads = (
       <>
         <meta property="og:title" content={title} />
         <meta property="og:type" content="article" />
         <meta property="og:image" content={`https://roger-almeida.com/${cover_picture}`} />
         <meta property="og:url" content={`https://roger-almeida.com/posts/${slug}`} />
-        <meta property="og:description" content={slug} />
+        <meta property="og:description" content={excerpt} />
         <meta property="og:locale" content="en_AU" />
+        <meta property="og:author" content="Roger Almeida" />
+        <meta property="og:article:published_time " content={`${date}`} />
         <meta property="og:site_name" content="roger-almeida.com" />
       </>
     );
@@ -99,7 +102,7 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
             {/* <div className="ssk-group"> */}
             {/* <a href="" className="ssk ssk-icon ssk-link"></a> */}
             <a
-              href={`https://www.linkedin.com/sharing/share-offsite/?url=https://roger-almeida.com/posts/${slug}`}
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${postEncodedURL}`}
               className="ssk ssk-icon ssk-linkedin"
               target="_blank"
               rel="noreferrer"
