@@ -120,7 +120,9 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
             <Typography variant="overline">Share it:</Typography>
           </Box>
         </Box>
-        <Markdown>{content}</Markdown>
+        <article>
+          <Markdown>{content}</Markdown>
+        </article>
       </>
     );
   }
