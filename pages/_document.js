@@ -4,17 +4,22 @@ import { ServerStyleSheets } from '@material-ui/core/styles';
 import theme from '../lib/theme';
 
 export default class MyDocument extends Document {
-  componentDidMount() {
-    if (typeof window !== 'undefined') {
-      console.log('Window is defined');
-    } else {
-      console.log('Window is NOT defined');
-    }
-  }
   render() {
     return (
       <Html lang="en">
         <Head>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-99688757-1"></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'UA-99688757-1');
+            `,
+            }}
+          />
+
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
