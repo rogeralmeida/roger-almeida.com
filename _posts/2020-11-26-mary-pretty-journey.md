@@ -9,118 +9,127 @@ tags:
   - women-in-tech
   - chaos-monkeys
 ---
-
 I had the pleasure to experience firsthand the journey of a brave woman who moved into the DevOps space. I believe her story can motivate many people so in this post I will share her story from my point of view.
 <!-- more -->
-## Background
+
+# Background
+
 Some weeks ago I had a catch-up with a friend of mine. We used to run a DevOps team together at Tyro in 2018/2019. He was and still is the team's Tech Lead. I was a Delivery Lead. At Tyro, the Tech Lead was focused on the technical solutions the team was creating. The Delivery Lead would be focused on the business value the team would be producing. An interesting fact about this is that the team members would report to the Delivery Lead. So the Delivery Lead was a People/Hiring Manager as well. And both the Delivery Lead and the Tech Lead would report to an Engineer Lead.
 
 During our catch-up, I asked how the old team members were doing. He gave me the usual updates:
 
 > Some people left, others moved to other teams, others rotated but were back, etc...
 
-But one particular point caught my attention:
-> *Mary Pretty* is still there and she is performing well.
+But one point caught my attention:
 
-*(Mary Pretty is not her real name, I'll protect her identity)*
+> Mary Pretty is still there and she is performing well.
 
-When I heard that, a flashback started playing on head. 
+_(Mary Pretty is not her real name, I'll protect her identity)_
 
-## Chaos Monkeys early days
+When I heard that, a flashback started playing on my head.
+
+# Chaos Monkeys early days
+
 Back then our team, Chaos Monkeys, was part of a critical remediation initiative. We had very aggressive goals:
 
-- Help breakdown the biggest company monolith into a microservice architecture.  Extracting the reporting capability into an independent service
-- Migrate historical data out of the monolith database. So that the database could be trimmed to 3 months of data
+Help breakdown the biggest company monolith into a microservice architecture.  Extracting the reporting capability into an independent service
+Migrate historical data out of the monolith database. So that the database could be trimmed to 3 months of data
 
-_(I will write more about this project on another post, this is not the focus here)_
+_(I can write more about this project on another post, this is not the focus here)_
 
 All that while adopting a new tech stack (containers on AWS ECS). And a new DevOps operational model: You build it, you run it.
 
-The team was composed of Application Developers. We all signed up to be the first team inside the company to adopt the "You build it, you run it" model. That involved be on-call 24/7.
-## My first interaction with her
+The team was composed of Software Engineers. We all signed up to be the first team inside the company to adopt the "You build it, you run it" model. That involved be on-call 24/7.
 
-One day, the Platform Tribe was doing a Tribe Demo and one of the items was “Monolith in containers”. To my surprise one of their engineers was able to run the monolith on containers. After the demo a bunch of tech leads and I went to talk to the engineer asking questions about how it was done. 
-Most of the tech leads were curious about the technical details of memory, shared volumes, etc...
-I was curious about the development process that led to a solution that most of the best technical minds we had didn't believe could be achieved.
+# My first interaction with her
 
-She answered all the technical questions and my questions as well. I actually don't remember exactly her answers but it was good enough that from that moment forward I kept contact with her.
+One day, the Platform Tribe was doing a Tribe Demo and one of the items was “Monolith on containers”. To my surprise, one of their engineers was able to run the monolith on containers. After the demo, a bunch of tech leads and I went to talk to the engineer asking questions about how it was done. Most of the tech leads were curious about the technical details of memory, shared volumes, etc... I was curious about the development process that led to a solution that most of the best technical minds we had didn't believe could be achieved. It was common sense that it was impossible to Dockerize the monolith.
 
-I soon learned that she didn’t have a great reputation. I believe she was demotivated during that phase. It was common to see her on the phone outside the working area (probably waiting for the monolith build to run - it could take hours :/ ). Her team had some people considered difficult to work with.
+She answered all the technical questions and my questions as well. I actually don't remember exactly her answers. But for sure it was good enough and from that moment forward I kept contact with her.
 
-I found out, in one of the many management meetings, that her team would be disbanded. If we could not find other teams to accommodate them, the company would have to let them go ☹️ . She was hired as a Performance Test Engineer.  In the early Tyro days when Tyro was doing train releases, it would make sense to have such a role. 
-By then, we were moving towards many deploys per day. With testers embedded into the teams. In such a scenario, her roles didn't make sense anymore.
+I soon learned that she didn’t have a great reputation. I believe she was demotivated during that phase. It was common to see her on her phone outside the working area (probably waiting for the monolith build to run - it could take hours :/ ). I come to learn afterwards that her team had some people considered hard to work with.
 
-When the Engineers leads asked if anyone would be willing to absorb any of the Performance Test engineers I saw the opportunity to bring her docker knowledge to our team.
+During a management meeting, I found out that her team would be disbanded. They were the last test team inside the company. And now all the teams had a embedded tester so the company didn't need a dedicated testing team anymore. If we could not find other teams to accommodate them, the company would have to let them go ☹️ . 
 
-I went to talk with her, to explain that it would mean a career change from Test/Infra to DevOps. She acknowledged it and after a few days, she accepted the challenge.
+When the Engineers Leads asked if anyone would be willing to absorb any of the Performance Test engineers I saw the opportunity to bring her docker knowledge to our team. I discussed the case with my boss and we believed it could work out.
 
-After a small internal interview process she joined our team. And then the fun started.
+I went to talk with her, to explain that it would mean a career change from Test/Infra to DevOps. I mentioned that the team was made of Software Engineers. She acknowledged it and after a few days, she accepted the challenge.
 
-## She is not a developer
+After a small internal interview process, she joined our team. And then the fun started.
 
-It didn’t take long for an interesting theme to show-up during my 1o1 sessions: **“She is not a developer!”**
+# She is not a developer
 
-Multiple team members told me on catch-ups that she was not “made of the same material” as the rest of us. She recognised that very soon as well. I remember that in one of the first catch-ups we had she was out of hope to become a developer. Everybody else in the team had more than 5 years of experiencie. A few with more than 10 actually.
+It didn’t take long for an interesting theme to come up during my 1o1 sessions: “She is not a developer!”
 
-While she was good with Testing and infra, she had never been a developer. Things like, Single Responsibility Principle, Functional Programming, Design Patters, OOP where common lang between the rest of the team but for her it was all new.
+Many team members told me on our catch-ups that she was not “made of the same material” as the rest of us. She recognised that very soon as well. I remember that in one of the first catch-ups we had, she was out of hope of becoming a developer. Everybody else in the team had more than 5 years of experience. A few with more than 10 actually.
 
-She was upset with the situation and it was clear she had doubts if she would be able to catch-up with the rest of the team. I could also see the fear of been fired while she was changing career. 
-I told her in one of our first catch-ups: “Becoming a developer is not a days or weeks process. It will take years, but we can do it!”
+While she was good with Testing and infra, she had never been a developer. Things like "Single Responsibility Principle", "Functional Programming", "Design Patterns", "OOP" were new concepts to her.
+
+She was upset with the situation and it was clear she had doubts if she would be able to catch-up with the rest of the team. I could also feel she was afraid of losing her job in the process. I remember that in one of our 1o1 I mentioned that “becoming a developer is not a days or weeks process. It will take years, but we can do it!”
 
 Since then we started many different actions to help her.
 
-## Adding value
+# Adding value
 
-With any programming task Mary Pretty would struggle to add value. And the feeling of being a weight to the team would just kill her motivation and she would eventually leave the company. So I had to do something.
+With any programming task, Mary Pretty would struggle to add value. And the feeling of being a weight to the team would just kill her motivation. I knew that she would eventually leave the company if the situation didn't change. So I had to do something.
 
-The team was focused on functional requirements, but I knew that there were important items that we were not tackling because the urgent things were consuming all of our capacity. In the urgent things I found items that she could execute:
+During that time, the team was focused on functional requirements. But my Tech Lead and I knew that there were important items that we were not tackling. The urgent things were consuming all of our current capacity.
+In the important things we had items like:
 
 - Docker infrastructure
 - Testing strategy for CI/CD pipelines
 - Infrastructure refactoring
-- Etc...
 
-I discussed with the Tech Lead and he also saw the value in finally prioritising these items.
-We then bumped up the priority of these items. During the team planning I mentioned that I would like Mary Pretty to lead that stream of work, but share the knowledge with the rest of the team. So she would never work alone on it, instead she would always be pairing with someone.
+I discussed it with the Tech Lead and he also saw the value in finally prioritising these items. We then bumped up the priority of these items in our backlog. During a team planning, I mentioned that I would like Mary Pretty to lead that stream of work. But she would have to share the knowledge with the rest of the team. So she would never work alone on it, instead, she would always be pairing with someone.
 
 The team was used to pair, and we would rotate pairs every Tuesdays and Thursdays.
 
-Every 2, 3 days Mary Pretty would be spreading her infra/testing knowledge with another team member.
+Every 2 ~ 3 days Mary Pretty would be spreading her infra/testing knowledge with another team member. And building bond with a different team member.
 
-I immediately notice that it changed the way the other team members would perceive her. And she also had something for fill proud of: Her contribution to the team.
+I immediately notice that it changed the way the other team members would perceive her. And she also had something to fill proud of. She was adding value to the team.
 
-## Unus pro omnibus, omnes pro uno
-I kept asking for feedback about her to the other team members. I would normally approach it from the point of view "has she been a burden to you/the team?". It was interesting because the team very soon accepted her as part of the team and started defending her and suggesting tasks she could tackle.
-I then changed my strategy and started recruiting people to help me with her. I asked a couple of team members to have catch-ups with her and teach her some of basic programming concepts: TDD, OOP, etc...
-Soon enough most of them become teachers for who she would go and ask programming questions
+# Unus pro omnibus, omnes pro uno
 
-## Becoming a developer
+I kept asking for feedback about her to the other team members. I would normally approach it from the point of view "has she been a burden to you/the team?". They very soon accepted her as part of the team. To the point of defending her and suggesting tasks she could tackle. I then changed my strategy and started recruiting people to help me with her. I asked a couple of team members to have catch-ups with her and teach her some of the basic programming concepts: TDD, OOP, etc... Soon enough most of them become teachers for who she would go and ask programming questions.
 
-She accepted all the help and went beyond that. She would expend most of her weekends studing programming. We recommended her some books and she consumed it.
+Now it was not only my task to make her successful. It was a mission shared with other team members. There were many occasions where I saw people making an effort to do not leave her behind.
 
-We normally would have our weekly 1o1 on Mondays, and she would tell me about a new programming concept she studied during the weekend. Some weekends she would skip to relax, but I would say that at least 80% of her weekends in her first year with us were dedicated to sharpener her coding axe.
+In our planning sessions for instance, it was common to ask someone to draw on the board. A few times the team encouraged her to draw her ideas and the team supported her the whole time.
 
-I remember that she used to have lunch inside the company and during almost a year she would spend her lunch time asking questions to other developers and doing pairing session with other devs to validate programming exercises.
+It was not easy and perfect the whole time. On some team members it was harder than to others. I had to do a few interventions here and there. In a few occasions I had to ask her to reduce the number of questions to some specific team members for sometime. Mostly when one of our highly technical people were researching solutions to hard problems. Overtime she developed this perception as well, and she was improving and depending less on peers to finish tasks.
 
-She also used all the learn to code site we would suggest her. I have never seem someone to dedicated into learning to code in such a short period of time.
-## Performance Review
+# Becoming a developer
 
-I have to highlight the amazing support I receive from my boss during the whole process. She could see Mary Pretty commitment and effort and we knew that she was the kind of professional we were looking for. But there was a issue, as a Performance Test Engineer, Mary Pretty had one of the highest salaries in the whole engineering department. During our weekly 1o1s I then started to mention that the performance review cycle was coming and that she probably would not be able to receive a generous salary increase as she was used to. But her response was that she was actually grateful for the opportunity of transitioning career while keeping her job.
+She accepted all the help and went beyond that. She would spend most of her weekends studing programming. We recommended her some books and she consumed it.
 
-The performance review happened almost one year after Mary Pretty joined our team, and she actually receive a great feedback from her peers. She not only had taught many new skills to her peers, but she had managed to develop her programming skills to the level where she would be able to get any XS, S, and even M item from the backlog and work on it with minimum support from the peers.
+We usually had our weekly 1o1 on Mondays. It was common for her  to tell me about a new programming concept she learned during the weekend. She invested a amount of personal weekend time to learn to code. Some weekends she would skip to relax, but I would say that at least 80% of her weekends were dedicated to sharpener her coding skills.
 
-My supportive boss actually managed give her some financial incentive after all the effort we saw her putting during the last months.
+She also founding a developer from another team who was now dedicating lunch time to teach her how to code. So it was common for both of them to have lunch in a meeting room with a laptop plugged to a projector. On some days, more people would join, but the two of them were always there. It was important to find someone outside the team as well. Because we used to pair the whole day, during lunch it was important to talk to other people.
 
-## Key team member
+She also used all the learn to code sites we would suggest her. I have never seem someone so dedicated into learning to code in such a short period of time.
 
-One year after that, Mary Pretty was the go to person for many points of the solution we had developed. Her patience and skill to explain complex stuff made her our best person to on-board new team members in the complexity of our CI/CD pipeline. 
+# Performance Review
+
+I have to highlight the amazing support I receive from my boss, Kate, during the whole process. Kate followed up Mary Pretty case very closelly. Kate saw her commitment and effort. Kate and I knew that Mary Pretty was the kind of professional we were looking for. But there was a issue, as a Performance Test Engineer, Mary Pretty didn't have a bad salary. We were not sure we would be able to give her any salary increase in the next salary review. I mentioned to Mary Pretty that the performance review cycle was coming and that I was not sure she would be happy with the outcome. But her response was that she was actually grateful for the opportunity of transitioning career while keeping her job.
+
+The performance review happened almost one year after Mary Pretty joined our team. She received great feedback from her peers. She had taught many new skills to her peers (Docker, testing, etc...). She also managed to develop her programming skills. Now she was able to work effectivelly on XS, S, and even some M taskswith minimum support from the peers. She was also a great team member, supporting and integrating everybody.
+
+In the end, Kate <3 actually managed give her some financial incentive. I so grateful for that as after all the effort we saw her putting during the last months she deserved it.
+
+# Key team member
+
+One year after that, Mary Pretty was the go to person for many points of the solution we had developed. Her patience and skill to explain complex stuff made her our best person to on-board new team members in the complexity of our CI/CD pipelines.
 
 When she discovered that she was pregnant the whole team started giving suggestion to the upcoming boy. I still call him: Boy Pretty ;)
 
 And on the months before she left for the maternity leave I had to deal with the problem of finding a way to survive without her.
 
-## Conclusion
+# Conclusion
 
-So, when I heard from the Tech Lead that she still there and is now a key team member my heart explods in happiness. Reflecting back on it, I’m so grateful for the opportunity of experiencing this firsthand. 
+I left Tyro weeks before she cameback form the maternity leave...
 
-Thanks for been an whole model for us Mary Pretty. I will tell your story on any chance I have.
+So, when I heard from the Tech Lead that she still there and is now a key team member my heart exploded in happiness. Reflecting back on it, I’m so grateful for the opportunity of experiencing this firsthand.
+
+Tyro managed to keep a dedicated professional with unique skills and with ability to learn new skills. Mary Pretty managed to transition carrer into DevOps and learned heaps about Software Enggineer. The team received someone who was awesome at integrating the work and people to accomplish a mission. And I got a new friend.
+
+Thanks for being a whole model for us Mary Pretty. I will tell your story on any chance I have.
