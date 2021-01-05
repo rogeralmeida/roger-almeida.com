@@ -25,6 +25,7 @@ import loadPostsInDescOrder, { allTags, buildPostFromRaw, loadRawPost } from '..
 import theme from '../../lib/theme';
 import Head from 'next/head';
 import { GrayMatterFile } from 'gray-matter';
+import { DiscussionEmbed } from 'disqus-react';
 
 interface PostProps extends WithStyles {
   post: Post;
@@ -69,6 +70,7 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
     console.log('Data: ', post.data);
     const { title, slug, cover_picture, date } = post.data;
     const { content, excerpt } = post;
+    const url = `https://roger-almeida.com/${slug}.html`;
     const postEncodedURL = encodeURI(`https://roger-almeida.com/posts/${slug}.html`);
     heads = (
       <>
@@ -123,6 +125,15 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
         <article>
           <Markdown>{content}</Markdown>
         </article>
+        <DiscussionEmbed
+          shortname="roger-almeida-com"
+          config={{
+            url,
+            identifier: slug,
+            title,
+            language: 'en_AU',
+          }}
+        />
       </>
     );
   }
