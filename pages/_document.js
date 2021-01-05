@@ -31,7 +31,6 @@ export default class MyDocument extends Document {
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"></link>
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff"></meta>
-          <title>roger-almeida.com</title>
         </Head>
         <body>
           <Main />
