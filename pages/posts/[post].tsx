@@ -131,7 +131,7 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
       <Head>{heads}</Head>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="Roger-Almeida.com" />
+        <Header title="Roger Almeida" />
         <main>
           <Grid container spacing={5} className={classes.mainGrid}>
             <Grid item lg={8}>

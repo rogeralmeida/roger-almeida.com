@@ -40,7 +40,7 @@ const Blog: React.FC<BlogProps> = (props: BlogProps) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="Roger-Almeida.com" />
+        <Header title="Roger Almeida" />
         <main>
           <Grid container spacing={5} className={classes.mainGrid}>
             <Grid item lg={8}>
