@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Mary Pretty's journey"
-date: 2020-11-26 00:53:31 +1000
+title: "Another success case of a woman in IT transitioning career"
+date: 2021-01-07 00:53:31 +1000
 cover_picture: "/images/indian-girl.png"
 tags:
   - motivational
@@ -9,6 +9,7 @@ tags:
   - women-in-tech
   - chaos-monkeys
 ---
+
 I had the pleasure to experience firsthand the journey of a brave woman who moved into the DevOps space. I believe her story can motivate many people so in this post I will share her story from my point of view.
 <!-- more -->
 
@@ -21,9 +22,7 @@ During our catch-up, I asked how the old team members were doing. He gave me the
 
 But one point caught my attention:
 
-> Mary Pretty is still there and she is performing well.
-
-_(Mary Pretty is not her real name, I'll protect her identity)_
+> Manpreet is still there and she is performing well.
 
 When I heard that, a flashback started playing on my head.
 
@@ -65,7 +64,7 @@ Since then we started many different actions to help her.
 
 # Adding value
 
-With any programming task, Mary Pretty would struggle to add value. And the feeling of being a weight to the team would just kill her motivation. I knew that she would eventually leave the company if the situation didn't change. So I had to do something.
+With any programming task, Manpreet would struggle to add value. And the feeling of being a weight to the team would just kill her motivation. I knew that she would eventually leave the company if the situation didn't change. So I had to do something.
 
 During that time, the team was focused on functional requirements. But my Tech Lead and I knew that there were important items that we were not tackling. The urgent things were consuming all of our current capacity. In the important things we had items like:
 
@@ -73,10 +72,10 @@ During that time, the team was focused on functional requirements. But my Tech L
 - Testing strategy for CI/CD pipelines
 - Infrastructure refactoring
 
-I discussed it with the Tech Lead and he also saw the value in finally prioritising these items. We then bumped up the priority of these items in our backlog. During a planning session, I mentioned that I would like Mary Pretty to lead that stream of work. But she would have to share the knowledge with the rest of the team. So she would never work alone on it, instead, she would always be pairing with someone.
+I discussed it with the Tech Lead and he also saw the value in finally prioritising these items. We then bumped up the priority of these items in our backlog. During a planning session, I mentioned that I would like Manpreet to lead that stream of work. But she would have to share the knowledge with the rest of the team. So she would never work alone on it, instead, she would always be pairing with someone.
 
 The team was used to pair, and we would rotate pairs every Tuesdays and Thursdays.
-Every 2 ~ 3 days Mary Pretty would be spreading her infra/testing knowledge to another team member. This was a great opportunity to create a bond with the other team members as well.
+Every 2 ~ 3 days Manpreet would be spreading her infra/testing knowledge to another team member. This was a great opportunity to create a bond with the other team members as well.
 
 I immediately noticed that it changed the way the other team members would perceive her. And she also had something to fill proud of. She was adding value to the team.
 # Unus pro omnibus, omnes pro uno
@@ -101,17 +100,17 @@ She also used all the learn to code sites we would suggest to her. I have never 
 
 # Performance Review
 
-I have to highlight the amazing support I receive from my boss, Kate, during the whole process. Kate followed up Mary Pretty's case very closely. Kate saw her commitment and effort. Kate and I knew that Mary Pretty was the kind of professional we were looking for. But there was an issue, as a Performance Test Engineer, Mary Pretty didn't have a bad salary. We were not sure we would be able to give her any salary increase in the next salary review. I mentioned to Mary Pretty that the performance review cycle was coming and that I was not sure she would be happy with the outcome. But her response was that she was actually grateful for the opportunity of transitioning career while keeping her job.
+I have to highlight the amazing support I receive from my boss, Kate, during the whole process. Kate followed up Manpreet's case very closely. Kate saw her commitment and effort. Kate and I knew that Manpreet was the kind of professional we were looking for. But there was an issue, as a Performance Test Engineer, Manpreet didn't have a bad salary. We were not sure we would be able to give her any salary increase in the next salary review. I mentioned to Manpreet that the performance review cycle was coming and that I was not sure she would be happy with the outcome. But her response was that she was actually grateful for the opportunity of transitioning career while keeping her job.
 
-The performance review happened almost one year after Mary Pretty joined our team. She received great feedback from her peers. She had taught many new skills to her peers (Docker, testing, etc...). She also managed to develop her programming skills. Now she was able to work effectively on eXtra Small, Small, and even some Medium tasks with minimum support from her peers. She was also a great team member, supporting and integrating everybody.
+The performance review happened almost one year after Manpreet joined our team. She received great feedback from her peers. She had taught many new skills to her peers (Docker, testing, etc...). She also managed to develop her programming skills. Now she was able to work effectively on eXtra Small, Small, and even some Medium tasks with minimum support from her peers. She was also a great team member, supporting and integrating everybody.
 
 In the end, Kate <3 actually managed to give her some financial incentive. I am so grateful for that as after all the effort we saw her putting during the last months she deserved it.
 
 # Key team member
 
-One year after that, Mary Pretty was the go-to person for many points of the solution we had developed. Her patience and skill to explain complex stuff made her our best person to onboard new team members in the complexity of our CI/CD pipelines.
+One year after that, Manpreet was the go-to person for many points of the solution we had developed. Her patience and skill to explain complex stuff made her our best person to onboard new team members in the complexity of our CI/CD pipelines.
 
-When she discovered that she was pregnant the whole team started giving name suggestions to the upcoming boy. I still call him: Boy Pretty ;)
+When she discovered that she was pregnant the whole team started giving name suggestions to the upcoming boy. I still call him: Boypreet ;)
 
 And in the months before she left for maternity leave, I had to deal with the problem of finding a way to survive without her.
 
@@ -121,6 +120,6 @@ I left Tyro weeks before she came back from maternity leave.
 
 So, when I heard from the Tech Lead that she was still there and is now a key team member my heart exploded in happiness. Reflecting back on it, I’m so grateful for the opportunity of experiencing this firsthand.
 
-Tyro managed to keep a dedicated professional with unique skills and with the ability to learn new skills. Mary Pretty managed to transition her career into DevOps and learned heaps about Software Engineering. The team received someone who was awesome at integrating the work and people to accomplish a mission. And I got a new friend.
+Tyro managed to keep a dedicated professional with unique skills and with the ability to learn new skills. Manpreet managed to transition her career into DevOps and learned heaps about Software Engineering. The team received someone who was awesome at integrating the work and people to accomplish a mission. And I got a new friend.
 
-Thanks for being a whole model for us Mary Pretty. I will tell your story on any chance I have.
+Thanks for being a whole model for us Manpreet. I will tell your story on any chance I have.
