@@ -15,48 +15,53 @@ I had the pleasure to experience firsthand the journey of a brave woman who move
 
 # Background
 
-Some weeks ago I had a catch-up with a friend of mine. We used to run a DevOps team together at Tyro in 2018/2019. He was and still is the team's Tech Lead. I was a Delivery Lead. At Tyro, the Tech Lead was focused on the technical solutions the team was creating. The Delivery Lead would be focused on the business value the team would be producing. An interesting fact about this is that the team members would report to the Delivery Lead. So the Delivery Lead was a People/Hiring Manager as well. And both the Delivery Lead and the Tech Lead would report to an Engineer Lead.
-During our catch-up, I asked how the old team members were doing. He gave me the usual updates:
+Some weeks ago I had a catch-up with a friend of mine. We used to run a DevOps team together at [Tyro](https://www.tyro.com) in 2018/2019. He was and still is the team's Tech Lead. I was a Delivery Lead. At Tyro, the Tech Lead was focused on the technical solutions the team was creating. The Delivery Lead would be focused on the business value the team would be producing. An interesting fact about this is that the team members would report to the Delivery Lead. So the Delivery Lead was a People/Hiring Manager as well. And both the Delivery Lead and the Tech Lead would report to an Engineer Lead.
+During our catch-up, I asked about how the old team members were doing. He gave me the usual updates:
 
 > Some people left, others moved to other teams, others rotated but were back, etc...
 
 But one point caught my attention:
 
-> Manpreet is still there and she is performing well.
+> Manpreet is still there and she is performing **really really** well.
 
-When I heard that, a flashback started playing on my head.
+When I heard that, a flashback movie started playing on my head.
 
 # Chaos Monkeys early days
 
 Back then our team, Chaos Monkeys, was part of a critical remediation initiative. We had very aggressive goals:
-Help breakdown the biggest company monolith into a microservice architecture. Extracting the reporting capability into an independent service Migrate historical data out of the monolith database. So that the database could be trimmed to 3 months of data
-_(I can write more about this project on another post, this is not the focus here)_
 
+- Help breakdown the biggest company monolith into a microservice architecture;
+-  Extracting the reporting capability into an independent service;
+- Migrate historical data out of the monolith database so that the database could be trimmed to 3 months of data
 
-All that while adopting a new tech stack (containers on AWS ECS). And a new DevOps operational model: You build it, you run it.
-The team was composed of Software Engineers. We all signed up to be the first team inside the company to adopt the "You build it, you run it" model. That involved be on-call 24/7.
+_(Let me know in the comments if you want to know more about this jouney. I can write more about this project on another post, this is not the focus here)_
+
+All that while adopting a new tech stack (containers on [AWS ECS](https://aws.amazon.com/ecs)). And a new DevOps operational model: [You build it, you run it](https://www.infoq.com/presentations/lessons-adopting-devops/).
+The team was composed of Software Engineers all eagers to adopt cloud technologies. We all signed up to be the first team inside the company to embrace DevOps principles. That involved be on-call 24/7. Learn how to monitor, run and provide support for our production workloads.
 
 # My first interaction with her
 
-One day, the Platform Tribe was doing a Tribe Demo and one of the items was “Monolith on containers”. To my surprise, one of their engineers was able to run the monolith on containers. After the demo, a bunch of tech leads and I went to talk to the engineer asking questions about how it was done. Most of the tech leads were curious about the technical details of memory, shared volumes, etc... I was curious about the development process that led to a solution that most of the best technical minds we had didn’t believe it could be done. It was common sense that it was impossible to Dockerize the monolith.
+One day, the Platform Tribe was doing a Tribe Demo and one of the items was “Monolith on containers”. To my surprise, one of their engineers was able to run the monolith on containers. After the demo, a bunch of tech leads and I went to talk to the engineer asking questions about how it was done. Most of the tech leads were curious about the technical details of memory, shared volumes, etc...
+I was curious about the development process that led to the solution. It was common sense internally back then that it was impossible to Dockerize the monolith. I believe we she didn't receive the memo ;)
 
-She answered all the technical questions and my questions as well. She answered all the questions and it left a good impression on me. She knew what she was talking about. From that moment forward I kept contact with her.
+She answered all the questions with the calm of who mastered the solution. It left a good impression on me, she knew what she was talking about. From that moment forward I kept in contact with her and paying attention to whatever she was involved with.
 
-I soon learned that she didn’t have a great reputation. I believe she was demotivated during that phase. It was common to see her on her phone outside the working area (probably waiting for the monolith build to run - it could take hours :/ ). I came to learn afterwards that her team had some people considered hard to work with.
+I soon learned that she didn’t have a great reputation. I believe she was demotivated during that phase. It was common to see her on her phone outside the working area (probably waiting for the monolith build to run - it could take hours :/ ). I also came to learn afterwards that her team had some people considered hard to work with.
 
-During a management meeting, I found out that her team would be disbanded. They were the last test team inside the company. And now all the teams had an embedded tester so the company didn't need a dedicated testing team anymore. If we could not find other teams to accommodate them, the company would have to let them go ☹️ .
-When the Engineers Leads asked if anyone would be willing to absorb any of the Performance Test engineers I saw the opportunity to bring her docker knowledge to our team. I discussed the case with my boss and we believed it could work out.
-I went to talk with her, to explain that it would mean a career change from Test/Infra to DevOps. I mentioned that the team was made of Software Engineers. She acknowledged it and after a few days, she accepted the challenge.
+During a management meeting, I found out that her team would be disbanded. They were the last test team inside the company. At that moment, all the engineering teams inside Tyro had an embedded tester (finally we had cross functional teams).
+Her team was the last remaining of a past era. If we could not find other teams to accommodate them, the company would have to let them go ☹️ .
+When the Engineers Leads asked if anyone would be willing to absorb any of the team members I saw the opportunity to bring her _docker expertise_ to our team. I discussed the case with my boss and we believed it could work out.
+I went to talk with her, to explain that it would mean a career change from Test/Infra to DevOps. I mentioned that the team was made of people with experience on Software Engineering. She acknowledged it and after a few days, she accepted the challenge.
 
 After an internal interview process, she joined our team. And then the fun started.
 
 # She is not a developer
 
-It didn’t take long for an interesting theme to come up during my 1o1 sessions: “She is not a developer!”
+It didn’t take long for an interesting theme to come up during my 1o1 sessions with the rest of Chaos Monkeys: **“She is not a developer!”**
 
-Many team members told me on our catch-ups that she was not “made of the same material” as the rest of us. She recognised that very soon as well. I remember that in one of the first catch-ups we had, she was out of hope of becoming a developer. Everybody else in the team had more than 5 years of experience. A few with more than 10 actually.
+Multiplw team members mentioned during our catch-ups that she was not “made of the same material” as the rest of us. She recognised that very soon as well. I remember that in one of the first catch-ups we had, she was out of hope of becoming a developer. Everybody else in the team had more than 5 years of experience. A few with more than 10 actually.
 
-While she was good with Testing and infra, she had never been a developer. Things like "Single Responsibility Principle", "Functional Programming", "Design Patterns", "OOP" were new concepts to her.
+While she was good with Testing and infra, she had never been a developer. Things like [Single Responsibility Principle](https://wiki.c2.com/?SingleResponsibilityPrinciple), [Functional Programming](https://wiki.c2.com/?AdvantagesOfFunctionalProgramming), [Design Patterns](https://wiki.c2.com/?PatternIndex), [OOP](https://wiki.c2.com/?ObjectOrientedProgramming) were all new concepts to her.
 
 She was upset with the situation and it was clear she had doubts if she would be able to catch-up with the rest of the team. I could also feel she was afraid of losing her job in the process. I remember that in one of our 1o1 I mentioned that “becoming a developer is not a days or weeks process. It will take years, but we can do it!”
 
@@ -66,21 +71,21 @@ Since then we started many different actions to help her.
 
 With any programming task, Manpreet would struggle to add value. And the feeling of being a weight to the team would just kill her motivation. I knew that she would eventually leave the company if the situation didn't change. So I had to do something.
 
-During that time, the team was focused on functional requirements. But my Tech Lead and I knew that there were important items that we were not tackling. The urgent things were consuming all of our current capacity. In the important things we had items like:
+During that time, the team was focused on functional requirements. But my Tech Lead and I knew that there were important [non-functional](https://wiki.c2.com/?NonFunctionalRequirements) items that we were not tackling. The urgent things were consuming all of our current capacity. In the important things we had items like:
 
 - Docker infrastructure
 - Testing strategy for CI/CD pipelines
 - Infrastructure refactoring
 
-I discussed it with the Tech Lead and he also saw the value in finally prioritising these items. We then bumped up the priority of these items in our backlog. During a planning session, I mentioned that I would like Manpreet to lead that stream of work. But she would have to share the knowledge with the rest of the team. So she would never work alone on it, instead, she would always be pairing with someone.
+I discussed it with the Tech Lead and he also saw the value in finally prioritising these items. We then bumped up the priority of these items in our backlog. During a planning session, I mentioned to the team that I would like Manpreet to lead that stream of work. But she would have to share the knowledge with the rest of the team. So she would never work alone on it, instead, she would always be pairing with someone else.
 
-The team was used to pair, and we would rotate pairs every Tuesdays and Thursdays.
+The team was used to pair programming. We would rotate pairs every Tuesdays and Thursdays during stand-up meeting.
 Every 2 ~ 3 days Manpreet would be spreading her infra/testing knowledge to another team member. This was a great opportunity to create a bond with the other team members as well.
 
-I immediately noticed that it changed the way the other team members would perceive her. And she also had something to fill proud of. She was adding value to the team.
+I immediately noticed that it changed the way the other team members would perceive her. And she also had something to fill proud of. Instead of being someone who cannot code, now the rest of the team could see the value she was adding already.
 # Unus pro omnibus, omnes pro uno
 
-I kept asking for feedback about her to the other team members. I would normally approach it from the point of view "has she been a burden to you/the team?". They very soon accepted her as part of the team. To the point of defending her and suggesting tasks that she could tackle. I then changed my strategy and started recruiting people to help me with her. I asked a couple of team members to have catch-ups with her and teach her some of the basic programming concepts: TDD, OOP, etc... Soon enough most of them become teachers for who she would go and ask programming questions.
+I kept asking for feedback about her to the other team members. I would normally approach it from the point of view "has she been a burden to you/the team?". They very soon accepted her as part of the team. To the point of defending her and suggesting tasks that she could tackle. I then changed my strategy and started recruiting people to officially help her. I asked a couple of team members to have catch-ups with her and teach her some of the basic programming concepts: [TDD](http://wiki.c2.com/?TestDrivenDevelopment), OOP, etc... Soon enough most of them became teachers for whom she would go and ask programming questions.
 
 Now, it was not only my mission to offer her support on her journey. It was a mission shared with other team members. There were many occasions where I saw people making an effort to do not leave her behind on plannings and meetings.
 
