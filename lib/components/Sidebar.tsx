@@ -15,7 +15,11 @@ const useStyles = (theme: Theme) =>
   createStyles({
     sidebarAboutBox: {
       padding: theme.spacing(2),
-      backgroundColor: theme.palette.primary.main,
+      background: 'rgba( 0, 0, 0, 0.55 )',
+      boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+      backdropFilter: 'blur( 8.0px )',
+      borderRadius: '10px',
+      color: '#ffffff',
     },
     sidebarSection: {
       marginTop: theme.spacing(3),
@@ -78,7 +82,7 @@ const Sidebar: React.FC<SidebarPropos> = (props: SidebarPropos) => {
           Welcome
         </Typography>
         <Avatar alt="Roger Almeida" src="/images/Myself.png" className={classes.largeAvatar}></Avatar>
-        <Typography>
+        <Typography variant="body1">
           I&apos;m a passionate technologist. Since 2002 I have been working in the Software Development industry. I had
           the opportunity of playing different roles during my career, the ones I enjoyed the most were developer,
           solution architect and Delivery Lead. This is my personal blog, where I post way less often than what I

@@ -40,6 +40,14 @@ const useStyles = (theme: Theme) =>
     postPaper: {
       padding: theme.spacing(2),
       marginBottom: theme.spacing(3),
+      background: 'rgba( 255, 255, 255, 0.55 )',
+      boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+      backdropFilter: 'blur( 8.0px )',
+      borderRadius: '10px',
+    },
+    pageBackground: {
+      backgroundImage: "url('/images/osman-rana-dI9KhXi0ooE-unsplash.jpg')",
+      backgroundRepeat: 'no-repeat',
     },
   });
 
@@ -141,7 +149,7 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
     <ThemeProvider theme={theme}>
       <Head>{heads}</Head>
       <CssBaseline />
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" className={classes.pageBackground}>
         <Header title="Roger Almeida" />
         <main>
           <Grid container spacing={5} className={classes.mainGrid}>

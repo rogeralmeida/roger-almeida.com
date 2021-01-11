@@ -10,6 +10,12 @@ interface HeaderPropos extends WithStyles {
 
 const useStyles = (theme: Theme) =>
   createStyles({
+    mainAppBar: {
+      background: 'rgba( 0, 0, 0, 0.55 )',
+      boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+      backdropFilter: 'blur( 8.0px )',
+      borderRadius: '10px',
+    },
     toolbar: {
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
@@ -29,7 +35,7 @@ const useStyles = (theme: Theme) =>
 const Header: React.FC<HeaderPropos> = (props: HeaderPropos) => {
   const { title, classes } = props;
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" className={classes.mainAppBar}>
       <Toolbar>
         <Link href="/">
           <Typography
