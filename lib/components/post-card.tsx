@@ -28,6 +28,10 @@ const useStyles = (theme: Theme) =>
     card: {
       padding: theme.spacing(1),
       marginBottom: theme.spacing(3),
+      background: 'rgba( 255, 255, 255, 0.55 )',
+      boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+      backdropFilter: 'blur( 8.0px )',
+      borderRadius: '10px',
     },
   });
 
