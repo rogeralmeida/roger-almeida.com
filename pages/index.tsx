@@ -15,6 +15,10 @@ const useStyles = (theme: Theme) =>
     mainGrid: {
       marginTop: theme.spacing(3),
     },
+    pageBackground: {
+      backgroundImage: "url('/images/osman-rana-dI9KhXi0ooE-unsplash.jpg')",
+      backgroundRepeat: 'no-repeat',
+    },
   });
 
 export const getStaticProps: () => Promise<{ props: { posts: Post[]; tags: string[] } }> = async () => {
@@ -39,7 +43,7 @@ const Blog: React.FC<BlogProps> = (props: BlogProps) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" className={classes.pageBackground}>
         <Header title="Roger Almeida" />
         <main>
           <Grid container spacing={5} className={classes.mainGrid}>
