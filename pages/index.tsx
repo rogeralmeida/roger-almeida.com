@@ -16,8 +16,9 @@ const useStyles = (theme: Theme) =>
       marginTop: theme.spacing(3),
     },
     pageBackground: {
-      backgroundImage: "url('/images/osman-rana-dI9KhXi0ooE-unsplash.jpg')",
-      backgroundRepeat: 'no-repeat',
+      // backgroundImage: "url('/images/osman-rana-dI9KhXi0ooE-unsplash.jpg')",
+      // backgroundRepeat: 'no-repeat',
+      // backgroundAttachment: 'fixed',
     },
   });
 

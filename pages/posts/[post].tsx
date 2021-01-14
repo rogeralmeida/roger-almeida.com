@@ -46,8 +46,8 @@ const useStyles = (theme: Theme) =>
       borderRadius: '10px',
     },
     pageBackground: {
-      backgroundImage: "url('/images/osman-rana-dI9KhXi0ooE-unsplash.jpg')",
-      backgroundRepeat: 'no-repeat',
+      // backgroundImage: "url('/images/osman-rana-dI9KhXi0ooE-unsplash.jpg')",
+      // backgroundRepeat: 'no-repeat',
     },
   });
 
