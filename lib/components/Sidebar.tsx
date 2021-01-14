@@ -20,14 +20,13 @@ const useStyles = (theme: Theme) =>
       backdropFilter: 'blur( 8.0px )',
       borderRadius: '10px',
       color: '#ffffff',
+      marginBottom: theme.spacing(3),
     },
-    sidebarSection: {
-      marginTop: theme.spacing(3),
-    },
-
+    sidebarSection: {},
     largeAvatar: {
       width: theme.spacing(7),
       height: theme.spacing(7),
+      margin: theme.spacing(2),
     },
   });
 
@@ -78,10 +77,15 @@ const Sidebar: React.FC<SidebarPropos> = (props: SidebarPropos) => {
   return (
     <Grid item xs={12} md={4}>
       <Paper className={classes.sidebarAboutBox}>
-        <Typography variant="h6" gutterBottom>
-          Welcome
-        </Typography>
-        <Avatar alt="Roger Almeida" src="/images/Myself.png" className={classes.largeAvatar}></Avatar>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar alt="Roger Almeida" src="/images/Myself.png" className={classes.largeAvatar}></Avatar>
+          <Typography variant="h4">Welcome</Typography>
+        </div>
         <Typography variant="body1">
           I&apos;m a passionate technologist. Since 2002 I have been working in the Software Development industry. I had
           the opportunity of playing different roles during my career, the ones I enjoyed the most were developer,
@@ -89,28 +93,32 @@ const Sidebar: React.FC<SidebarPropos> = (props: SidebarPropos) => {
           predicted.
         </Typography>
       </Paper>
-      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-        tags
-      </Typography>
-      {tagChips}
-      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-        Social
-      </Typography>
-      {social.map((network) => (
-        <Link display="block" variant="body1" href={network.href} key={network.name} target="_blank">
-          <Grid container direction="row" spacing={1} alignItems="center">
-            <Grid item key={network.name + '-icon'}>
-              <network.icon />
+      <Paper className={classes.sidebarAboutBox}>
+        <Typography variant="h5" gutterBottom className={classes.sidebarSection}>
+          tags
+        </Typography>
+        {tagChips}
+      </Paper>
+      <Paper className={classes.sidebarAboutBox}>
+        <Typography variant="h5" gutterBottom className={classes.sidebarSection}>
+          Social
+        </Typography>
+        {social.map((network) => (
+          <Link display="block" variant="body1" href={network.href} key={network.name} target="_blank">
+            <Grid container direction="row" spacing={1} alignItems="center">
+              <Grid item key={network.name + '-icon'}>
+                <network.icon />
+              </Grid>
+              <Grid item key={network.name + '-name'}>
+                {network.name}
+              </Grid>
+              <Grid item key={network.name + '-launch'}>
+                <LaunchIcon />
+              </Grid>
             </Grid>
-            <Grid item key={network.name + '-name'}>
-              {network.name}
-            </Grid>
-            <Grid item key={network.name + '-launch'}>
-              <LaunchIcon />
-            </Grid>
-          </Grid>
-        </Link>
-      ))}
+          </Link>
+        ))}
+      </Paper>
     </Grid>
   );
 };
