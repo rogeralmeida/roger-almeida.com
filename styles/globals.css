@@ -4,9 +4,17 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background-image: url('/images/backgrounds/ray-mallick-5J1bHRX1fNw-unsplash.jpg');
+  background-image: url('/images/backgrounds/abstract-background-1.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
+  /* background:
+    -webkit-linear-gradient(100deg, hsla(16.16, 0%, 100%, 1) 36%, hsla(16.16, 0%, 100%, 0) 65%),
+    -webkit-linear-gradient(1deg, hsla(208.15, 69.83%, 54.51%, 1) 10%, hsla(208.15, 69.83%, 54.51%, 0) 80%),
+    -webkit-linear-gradient(271deg, hsla(197.7, 88.41%, 72.94%, 1) 15%, hsla(197.7, 88.41%, 72.94%, 0) 80%);
+  background:
+    linear-gradient(350deg, hsla(16.16, 0%, 100%, 1) 36%, hsla(16.16, 0%, 100%, 0) 65%),
+    linear-gradient(89deg, hsla(208.15, 69.83%, 54.51%, 1) 10%, hsla(208.15, 69.83%, 54.51%, 0) 80%),
+    linear-gradient(179deg, hsla(197.7, 88.41%, 72.94%, 1) 15%, hsla(197.7, 88.41%, 72.94%, 0) 80%); */
 }
 
 a {
