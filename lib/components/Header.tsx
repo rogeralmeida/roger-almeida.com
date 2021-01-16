@@ -11,7 +11,7 @@ interface HeaderPropos extends WithStyles {
 const useStyles = (theme: Theme) =>
   createStyles({
     mainAppBar: {
-      background: 'rgba( 0, 0, 0, 0.55 )',
+      background: 'rgba( 74, 144, 226, 0.55 )',
       boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
       backdropFilter: 'blur( 8.0px )',
       borderRadius: '10px',
