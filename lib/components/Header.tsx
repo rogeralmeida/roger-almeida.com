@@ -38,14 +38,7 @@ const Header: React.FC<HeaderPropos> = (props: HeaderPropos) => {
     <AppBar position="sticky" className={classes.mainAppBar}>
       <Toolbar>
         <Link href="/">
-          <Typography
-            component="h2"
-            variant="h5"
-            color="inherit"
-            align="center"
-            noWrap
-            className={classes.toolbarTitle}
-          >
+          <Typography variant="h2" color="inherit" align="center" noWrap className={classes.toolbarTitle}>
             {title}
           </Typography>
         </Link>
