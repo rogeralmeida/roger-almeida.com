@@ -1,0 +1,11 @@
+Centralizar mais as imagens para funcionar em resolucao 1024
+Adicionar mais vida no primeiro slide
+Mudar timeline para grid or multiple slides
+Adicionar slide para falar do nosso estado (deploys per week, availability, cycle time, etc...)
+Adicionar imagems nos slides de operational models
+Centralizar imagens no slide the tyro way
+No slide the define your boundaries tem de mudar para falar sobre artefatos e talz
+Fix mermaid or find another way of doing it
+Create a conclusion slide
+
+Merge On-call with alerting
