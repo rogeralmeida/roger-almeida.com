@@ -1,5 +1,13 @@
 version: '3.8'
 services:
+  app:
+    image: node:18
+    working_dir: /blog
+    volumes:
+      - .:/blog
+    command:
+      - yarn
+      - dev
   deploy:
     image: dnxsolutions/aws
     working_dir: /blog

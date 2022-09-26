@@ -13,19 +13,19 @@ import {
   withStyles,
   WithStyles,
 } from '@material-ui/core';
-import { Skeleton } from '@material-ui/lab';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import {Skeleton} from '@material-ui/lab';
+import {GetStaticPaths, GetStaticProps} from 'next';
 import Link from 'next/link';
 import React from 'react';
 import Footer from '../../lib/components/Footer';
 import Header from '../../lib/components/Header';
 import Markdown from '../../lib/components/Markdown';
 import Sidebar from '../../lib/components/Sidebar';
-import loadPostsInDescOrder, { allTags, buildPostFromRaw, loadRawPost } from '../../lib/services/posts-service';
+import loadPostsInDescOrder, {allTags, buildPostFromRaw, loadRawPost} from '../../lib/services/posts-service';
 import theme from '../../lib/theme';
 import Head from 'next/head';
-import { GrayMatterFile } from 'gray-matter';
-import { DiscussionEmbed } from 'disqus-react';
+import {GrayMatterFile} from 'gray-matter';
+import {DiscussionEmbed} from 'disqus-react';
 
 interface PostProps extends WithStyles {
   post: Post;
