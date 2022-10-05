@@ -1,0 +1,596 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Roger Almeida: DevOps from the trenches</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+		<link rel='stylesheet' href='https://unpkg.com/emoji.css/dist/emoji.min.css'>
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>DevOps from the trenches</h1>
+					<h2>How to achieve Elite performance</h2>
+					<h3>Roger Almeida</h3>
+					<h4>roger-almeida.com</h4>
+				</section>
+				<section>
+					<section data-auto-animate>
+						<h2>Context</h2>
+					</section>
+					<section data-auto-animate data-background-image="images/chaos-monkeys.png" data-background-opacity="0.1">
+						<h2>Context</h2>
+						<ul>
+							<li>A terrible name: Chaos Monkeys</li>
+							<li class="fragment" data-fragment-index="1">Customer's reporting services</li>
+							<li class="fragment" data-fragment-index="2">Adopted a new support Model:
+								<span data-fragment-index="2" class="fragment highlight-blue">You built it, you run it!</span>
+							</li>
+							<li class="fragment" data-fragment-index="3">First team to fully adopt cloud computing inside the business</li>
+						</ul>
+					</section>
+					<section data-auto-animate data-background-image="images/reporting.png" data-background-opacity="0.1">
+						<h2>Context: Reporting Service</h2>
+						<ul>
+							<li>A critical part of Merchants routine</li>
+							<li class="fragment"><strong>Real-time</strong> pressure</li>
+							<li class="fragment"><strong>Relevant</strong> data volume</li>
+						</ul>
+					</section>
+					<section data-auto-animate data-background-image="images/teams-seating.jpg" data-background-opacity="0.1">
+						<h2>Context: Background</h2>
+						<ul>
+							<li class="fragment"><span class="ec ec-steam-locomotive"></span> Train release every 2 weeks</li>
+							<li class="fragment"><span class="ec ec-busts-in-silhouette"></span> 15~17 cross-functional teams</li>
+							<li class="fragment"><span class="ec ec-cold-sweat"></span><span class="fragment highlight-red"> Two failed</span> DevOps incarnations</li>
+							<li class="fragment">Dev coding for JVM <span class="ec ec-no-good-woman"></span> Ops running 2 data centers</li>
+							<li class="fragment"><span class="ec ec-woman-shrugging"></span> ZERO cloud experience at day 1</li>
+						</ul>
+					</section>
+					<section data-auto-animate data-background-image="images/achievements.png" data-background-opacity="0.1">
+						<h2>Context: Achievements</h2>
+						<h4 class="fragment"><span class="ec ec-dart"></span>DORA elite performance<span class="ec ec-dart"></span></h4>
+						<ul class="fragment">
+							<li>Deploys: <span class="fragment">6/week</span></li>
+							<li>Lead time for change: <span class="fragment">&leq; 20 min</span></li>
+							<li>MTTR: <span class="fragment">&leq; 30 min</span></li>
+							<li>Change fail rate: <span class="fragment">&leq; 5%</span></li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section data-auto-animate>
+						<h2>Why DevOps?</h2>
+					</section>
+					<section data-auto-animate>
+						<h2>Why DevOps?</h2>
+						<img src="images/dora-report.png" style="width: 50%" data-auto-animate-id="devops-chart">
+					</section>
+					<section data-auto-animate>
+						<h2>Why DevOps?</h2>
+						<div class="mermaid" data-auto-animate-id="devops-chart">
+							graph TD
+							BF[Business Performance]
+							classDef highlighted fill:#ea5929;
+							class BF highlighted
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Why DevOps?</h2>
+						<div class="mermaid" data-auto-animate-id="devops-chart">
+							graph TD
+							BF[Business Performance]
+							BF --> OTC[Organisational and Team Culture]
+							BF --> Cloud[Cloud]
+							classDef highlighted fill:#ea5929;
+							class BF highlighted
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Why DevOps?</h2>
+						<div class="mermaid" data-auto-animate-id="devops-chart">
+							graph TD
+							BF[Business Performance]
+							BF --> OTC[Organisational and Team Culture]
+							BF --> Cloud[Cloud]
+							BF --> SDO(Software Delivery and Operational Performance)
+							classDef highlighted fill:#ea5929;
+							class BF,SDO highlighted
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Why DevOps?</h2>
+						<div class="mermaid" data-auto-animate-id="devops-chart">
+							graph TD
+							BF[Business Performance]
+							BF --> OTC[Organisational and Team Culture]
+							BF --> Cloud[Cloud]
+							BF --> SDO[Software Delivery and Operational Performance]
+							SDO --> DF[Deployment Frequency]
+							classDef highlighted fill:#ea5929;
+							class BF,SDO,DF highlighted
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Why DevOps?</h2>
+						<div class="mermaid" data-auto-animate-id="devops-chart">
+							graph TD
+							BF[Business Performance]
+							BF --> OTC[Organisational and Team Culture]
+							BF --> Cloud[Cloud]
+							BF --> SDO[Software Delivery and Operational Performance]
+							SDO --> DF[Deployment Frequency]
+							SDO --> LTFC[Lead Time For Changes]
+							classDef highlighted fill:#ea5929;
+							class BF,SDO,DF,LTFC highlighted
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Why DevOps?</h2>
+						<div class="mermaid" data-auto-animate-id="devops-chart">
+							graph TD
+							BF[Business Performance]
+							BF --> OTC[Organisational and Team Culture]
+							BF --> Cloud[Cloud]
+							BF --> SDO[Software Delivery and Operational Performance]
+							SDO --> DF[Deployment Frequency]
+							SDO --> LTFC[Lead Time For Changes]
+							SDO --> CFR[Change Failure Rate]
+							classDef highlighted fill:#ea5929;
+							class BF,SDO,LTFC,CFR,DF highlighted
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Why DevOps?</h2>
+						<div class="mermaid" data-auto-animate-id="devops-chart">
+							graph TD
+							BF[Business Performance]
+							BF --> OTC[Organisational and Team Culture]
+							BF --> Cloud[Cloud]
+							BF --> SDO[Software Delivery and Operational Performance]
+							SDO --> DF[Deployment Frequency]
+							SDO --> LTFC[Lead Time For Changes]
+							SDO --> CFR[Change Failure Rate]
+							SDO --> MTTR[Mean Time To Restore]
+							classDef highlighted fill:#ea5929;
+							class BF,SDO,LTFC,MTTR,DF,CFR highlighted
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Why DevOps?</h2>
+						<div class="mermaid" data-auto-animate-id="devops-chart">
+							graph TD
+							BF[Business Performance]
+							BF --> OTC[Organisational and Team Culture]
+							BF --> Cloud[Cloud]
+							BF --> SDO[Software Delivery and Operational Performance]
+							SDO --> LTFC[Lead Time For Changes]
+							SDO --> MTTR[Mean Time To Restore]
+							SDO --> DF[Deployment Frequency]
+							SDO --> CFR[Change Failure Rate]
+							SDO --> R[Reliability]
+							classDef highlighted fill:#ea5929;
+							class BF,SDO,LTFC,MTTR,DF,CFR,R highlighted
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Why DevOps?</h2>
+						<table data-auto-animate-id="table-dora" class="r-fit-text">
+							<thead>
+							<tr>
+								<th>SDO Metric</th>
+								<th>Low</th>
+								<th>Medium</th>
+								<th>High</th>
+							</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>Deployment Frequency</strong></td>
+								</tr>
+								<tr>
+									<td><strong>Lead time for changes</strong></td>
+								</tr>
+								<tr>
+									<td><strong>Time to restore service</strong></td>
+								</tr>
+								<tr>
+									<td><strong>Change failure rate</strong></td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+					<section data-auto-animate>
+						<h2>Why DevOps?</h2>
+						<table data-auto-animate-id="table-dora" class="r-fit-text">
+							<thead>
+							<tr>
+								<th>SDO Metric</th>
+								<th>Low</th>
+								<th>Medium</th>
+								<th>High</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td><strong>Deployment Frequency</strong></td>
+								<td>once/month to once/semester</td>
+							</tr>
+							<tr>
+								<td><strong>Lead time for changes</strong></td>
+								<td>one to six months</td>
+							</tr>
+							<tr>
+								<td><strong>Time to restore service</strong></td>
+								<td>Between one week and one month</td>
+							</tr>
+							<tr>
+								<td><strong>Change failure rate</strong></td>
+								<td>46%~60%</td>
+							</tr>
+							</tbody>
+						</table>
+					</section>
+					<section data-auto-animate>
+						<h2>Why DevOps?</h2>
+						<table data-auto-animate-id="table-dora" class="r-fit-text">
+							<thead>
+							<tr>
+								<th>SDO Metric</th>
+								<th>Low</th>
+								<th>Medium</th>
+								<th>High</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td><strong>Deployment Frequency</strong></td>
+								<td>once/month to once/semester</td>
+								<td>once/week to once/month</td>
+							</tr>
+							<tr>
+								<td><strong>Lead time for changes</strong></td>
+								<td>one to six months</td>
+								<td>one week to one month</td>
+							</tr>
+							<tr>
+								<td><strong>Time to restore service</strong></td>
+								<td>Between one week and one month</td>
+								<td>one day to one week</td>
+							</tr>
+							<tr>
+								<td><strong>Change failure rate</strong></td>
+								<td>46%~60%</td>
+								<td>16%~30%</td>
+							</tr>
+							</tbody>
+						</table>
+					</section>
+					<section data-auto-animate>
+						<h2>Why DevOps?</h2>
+						<table data-auto-animate-id="table-dora" class="r-fit-text">
+							<thead>
+							<tr>
+								<th>SDO Metric</th>
+								<th>Low</th>
+								<th>Medium</th>
+								<th>High</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td><strong>Deployment Frequency</strong></td>
+								<td>once/month to once/semester</td>
+								<td>once/week to once/month</td>
+								<td>on-demand (multiples/day)</td>
+							</tr>
+							<tr>
+								<td><strong>Lead time for changes</strong></td>
+								<td>one to six months</td>
+								<td>one week to one month</td>
+								<td>one day to one week</td>
+							</tr>
+							<tr>
+								<td><strong>Time to restore service</strong></td>
+								<td>Between one week and one month</td>
+								<td>one day to one week</td>
+								<td>&leq; 1 day</td>
+							</tr>
+							<tr>
+								<td><strong>Change failure rate</strong></td>
+								<td>46%~60%</td>
+								<td>16%~30%</td>
+								<td>0%~15%</td>
+							</tr>
+							</tbody>
+						</table>
+					</section>
+					<section data-auto-animate>
+						<h2>Why DevOps?</h2>
+						<table data-auto-animate-id="table-dora" class="r-fit-text">
+							<thead>
+							<tr>
+								<th>SDO Metric</th>
+								<th>Low</th>
+								<th>Medium</th>
+								<th class="fragment highlight-green animate__animated animate__headShake animate__delay-5s" data-fragment-index="1">High</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td><strong>Deployment Frequency</strong></td>
+								<td>once/month to once/semester</td>
+								<td>once/week to once/month</td>
+								<td class="fragment highlight-green" data-fragment-index="1">on-demand (multiples/day)</td>
+							</tr>
+							<tr>
+								<td><strong>Lead time for changes</strong></td>
+								<td>one to six months</td>
+								<td>one week to one month</td>
+								<td class="fragment highlight-green" data-fragment-index="1">one day to one week</td>
+							</tr>
+							<tr>
+								<td><strong>Time to restore service</strong></td>
+								<td>Between one week and one month</td>
+								<td>one day to one week</td>
+								<td class="fragment highlight-green" data-fragment-index="1">&leq; 1 day</td>
+							</tr>
+							<tr>
+								<td><strong>Change failure rate</strong></td>
+								<td>46%~60%</td>
+								<td>16%~30%</td>
+								<td class="fragment highlight-green" data-fragment-index="1">0%~15%</td>
+							</tr>
+							</tbody>
+						</table>
+					</section>
+				</section>
+				<section>
+					<section data-auto-animate><h2>Continuous Delivery</h2></section>
+					<section data-auto-animate>
+						<h2>Continuous Delivery</h2>
+						<blockquote>
+							Continuous Delivery is the ability to <span class="fragment highlight-blue">get changes</span>
+							of all types—including new features, configuration changes, bug fixes and experiments—into production, or
+							<span class="fragment highlight-blue">into the hands of users</span>,
+							<span class="fragment highlight-blue">safely</span> and <span class="fragment highlight-blue">quickly</span> in a
+							<span class="fragment highlight-blue">sustainable</span> way.
+						</blockquote>
+					</section>
+					<section data-auto-animate>
+						<h2>Continuous Delivery</h2>
+						<img src="images/continuous-delivery.jpg" alt="continuous delivery book cover"/>
+					</section>
+					<section data-auto-animate>
+						<h2>Continuous Delivery</h2>
+						<div class="mermaid">
+							flowchart TD
+								CD(Continuous Delivery)
+								CD --> CI(Continuous Integration)
+								CD --> DP(Deployment Pipeline)
+								DP --> IAC(Infrastructure as Code)
+								DP --> DV(Database Versioning)
+								DP --> BGD(Blue Green Deployment)
+								DP --> TFA(12 Factors Apps)
+								CI --> TBD(Trunk Based Development)
+								CD --> DRS(Deploy-Release Segregation)
+								DRS --> FF(Feature Flag)
+								DRS --> BBA(Branch By Abstraction)
+								DRS --> DL(Dark Launching)
+							TBD --> DRS
+						</div>
+					</section>
+				</section>
+				<section>
+					<section data-auto-animate>
+						<h2>Deployment Pipeline</h2>
+					</section>
+					<section data-auto-animate>
+						<h2>Deployment Pipeline</h2>
+						<div class="mermaid">
+							sequenceDiagram
+								autonumber
+								actor DT as Delivery Team
+								participant VC as Version Control
+								participant CS as Commit Stage
+
+								DT ->>+ VC: Check in
+								VC ->>+ CS: Trigger
+								CS -->>- DT: FAILURE Feedback
+								deactivate VC
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Deployment Pipeline</h2>
+						<div class="mermaid">
+							sequenceDiagram
+								autonumber
+								actor DT as Delivery Team
+								participant VC as Version Control
+								participant CS as Commit Stage
+								participant ACT as Acceptance Tests
+
+								DT ->>+ VC: Check in
+								VC ->>+ CS: Trigger
+								CS -->>- DT: FAILURE Feedback
+								deactivate VC
+
+								DT ->>+ VC: check in: FIX
+								VC ->>+ CS: Trigger
+								CS ->>+ ACT: Trigger acceptance tests
+								ACT -->>- DT: FAILURE feedback
+								deactivate CS
+								deactivate VC
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Deployment Pipeline</h2>
+						<div class="mermaid">
+							sequenceDiagram
+								autonumber
+								actor DT as Delivery Team
+								participant VC as Version Control
+								participant CS as Commit Stage
+								participant ACT as Acceptance Tests
+								participant MV as Manual Validations
+								participant R as Release
+
+
+								DT ->>+ VC: check in: AC FIX
+								VC ->>+ CS: Trigger
+								CS ->>+ ACT: Trigger acceptance tests
+								deactivate CS
+								ACT -->> DT: Success Feedback
+								ACT ->>+ MV: Approval
+								deactivate ACT
+								MV -->> DT: Feedback
+								MV ->>+ R: Approval
+								deactivate MV
+								R -->>- DT: Value Feedback
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Deployment Pipeline</h2>
+						<div class="mermaid">
+							flowchart LR
+								subgraph Commit Stage
+									C(Compile) --> UT(Unit Tests)
+									UT --> P(Packaging)
+								end
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Deployment Pipeline</h2>
+						<div class="mermaid">
+							flowchart LR
+								subgraph Commit Stage
+									C(Compile) --> UT(Unit Tests)
+									UT --> P(Packaging)
+								end
+
+								subgraph Dev Stage
+									P --> DD(Deploy)
+									DD --> ST(Smoke Tests)
+									ST --> IT(Integration Tests)
+								end
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Deployment Pipeline</h2>
+						<div class="mermaid">
+							flowchart LR
+
+								subgraph Dev Stage
+									P(...) --> DD(Deploy)
+									DD --> ST(Smoke Tests)
+									ST --> IT(Integration Tests)
+								end
+
+								subgraph Pre-Prod
+									IT --> DPP
+									DPP(Deploy) --> STT(Smoke Tests)
+									STT --> ET(Exploratory Tests)
+								end
+
+								subgraph Performance Stage
+									IT --> DPS(Deploy)
+									DPS --> PT(Performance Tests)
+								end
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Deployment Pipeline</h2>
+						<div class="mermaid">
+							flowchart LR
+								IT(...) --> DPP
+								subgraph Pre-Prod
+									DPP(Deploy) --> STT(Smoke Tests)
+									STT --> ET(Exploratory Tests)
+								end
+
+
+								subgraph Production Stage
+									ET --> BGD(Blue Green Deploy)
+								end
+						</div>
+					</section>
+				</section>
+				<section>Support Models</section>
+				<section>Service Definition</section>
+				<section>Monitoring & Alerting</section>
+				<section>Testing Practices</section>
+				<section>Appendix</section>
+				<section>Preparedness</section>
+				<section>
+					<section>
+						<h2>Continuous Integration</h2>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Trunk Based Development</h2>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Deploy-Release Segregation</h2>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Feature Flag</h2>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Branch by Abstraction</h2>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Dark Launching</h2>
+					</section>
+				</section>
+				<section>Team selection</section>
+				<section>Slide 2
+						<aside class="notes">
+						<p>Some notes</p>
+						</aside>
+						<p>Some slide text</p>
+						<aside class="notes">
+						<p>and some more notes</p>
+					</aside>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				viewDistance: 99,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+			mermaid.initialize({ startOnLoad: true, theme: 'dark', logLevel: 1 })
+		</script>
+	</body>
+</html>
