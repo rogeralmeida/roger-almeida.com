@@ -174,9 +174,9 @@
 							BF --> OTC[Organisational and Team Culture]
 							BF --> Cloud[Cloud]
 							BF --> SDO[Software Delivery and Operational Performance]
+							SDO --> DF[Deployment Frequency]
 							SDO --> LTFC[Lead Time For Changes]
 							SDO --> MTTR[Mean Time To Restore]
-							SDO --> DF[Deployment Frequency]
 							SDO --> CFR[Change Failure Rate]
 							SDO --> R[Reliability]
 							classDef highlighted fill:#ea5929;
@@ -395,6 +395,80 @@
 					<section data-auto-animate>
 						<h2>Deployment Pipeline</h2>
 					</section>
+					<section data-auto-animate data-background-image="images/buildkite-dashboard.png" data-background-opacity="0.1">
+						<h2>Deployment Pipeline</h2>
+						<ul>
+							<li class="fragment">The only way to introduce changes to production</li>
+							<li class="fragment">Ensure quality process are followed</li>
+							<li class="fragment">Build once, deploy multiple times</li>
+							<li class="fragment">Requires specific ways of working (12 Factors App)</li>
+						</ul>
+					</section>
+					<section data-auto-animate>
+						<h2>Deployment Pipeline</h2>
+						<div class="mermaid">
+							flowchart LR
+							subgraph Commit Stage
+							C(Compile) --> UT(Unit Tests)
+							UT --> P(Packaging)
+							end
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Deployment Pipeline</h2>
+						<div class="mermaid">
+							flowchart LR
+							subgraph Commit Stage
+							C(Compile) --> UT(Unit Tests)
+							UT --> P(Packaging)
+							end
+
+							subgraph Dev Stage
+							P --> DD(Deploy)
+							DD --> ST(Smoke Tests)
+							ST --> IT(Integration Tests)
+							end
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Deployment Pipeline</h2>
+						<div class="mermaid">
+							flowchart LR
+
+							subgraph Dev Stage
+							P(...) --> DD(Deploy)
+							DD --> ST(Smoke Tests)
+							ST --> IT(Integration Tests)
+							end
+
+							subgraph Pre-Prod
+							IT --> DPP
+							DPP(Deploy) --> STT(Smoke Tests)
+							STT --> ET(Exploratory Tests)
+							end
+
+							subgraph Performance Stage
+							IT --> DPS(Deploy)
+							DPS --> PT(Performance Tests)
+							end
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Deployment Pipeline</h2>
+						<div class="mermaid">
+							flowchart LR
+							IT(...) --> DPP
+							subgraph Pre-Prod
+							DPP(Deploy) --> STT(Smoke Tests)
+							STT --> ET(Exploratory Tests)
+							end
+
+
+							subgraph Production Stage
+							ET --> BGD(Blue Green Deploy)
+							end
+						</div>
+					</section>
 					<section data-auto-animate>
 						<h2>Deployment Pipeline</h2>
 						<div class="mermaid">
@@ -459,75 +533,313 @@
 								R -->>- DT: Value Feedback
 						</div>
 					</section>
-					<section data-auto-animate>
-						<h2>Deployment Pipeline</h2>
+				</section>
+				<section>
+					<section>
+						<h2>Service Definition</h2>
+					</section>
+					<section>
+						<h2>Service Definition</h2>
 						<div class="mermaid">
-							flowchart LR
-								subgraph Commit Stage
-									C(Compile) --> UT(Unit Tests)
-									UT --> P(Packaging)
+							flowchart TD
+								subgraph Service
+									A[Microservice A] --> DB1[(Database)]
 								end
 						</div>
 					</section>
 					<section data-auto-animate>
-						<h2>Deployment Pipeline</h2>
+						<h2>Service Definition</h2>
 						<div class="mermaid">
-							flowchart LR
-								subgraph Commit Stage
-									C(Compile) --> UT(Unit Tests)
-									UT --> P(Packaging)
-								end
-
-								subgraph Dev Stage
-									P --> DD(Deploy)
-									DD --> ST(Smoke Tests)
-									ST --> IT(Integration Tests)
+							flowchart TD
+								subgraph Service
+									A[Microservice A] --> DB1[(Database A)]
+									A --> B[Microservice B]
+									B --> DB2[(Database B)]
+									A --> C[Stateless MS]
+									B --> C
 								end
 						</div>
 					</section>
 					<section data-auto-animate>
-						<h2>Deployment Pipeline</h2>
+						<h2>Service Definition</h2>
 						<div class="mermaid">
-							flowchart LR
-
-								subgraph Dev Stage
-									P(...) --> DD(Deploy)
-									DD --> ST(Smoke Tests)
-									ST --> IT(Integration Tests)
+							flowchart TD
+								subgraph Service A
+									A[Microservice A] --> DB1[(Database A)]
+									A --> B[Microservice B]
+									B --> DB2[(Database B)]
+									A --> C[Stateless MS]
+									B --> C
 								end
-
-								subgraph Pre-Prod
-									IT --> DPP
-									DPP(Deploy) --> STT(Smoke Tests)
-									STT --> ET(Exploratory Tests)
-								end
-
-								subgraph Performance Stage
-									IT --> DPS(Deploy)
-									DPS --> PT(Performance Tests)
+								subgraph Service B
+									D[Microservice D] --> DB3[(Database D)]
+									D --> E[Microservice E]
+									E --> DBE[(Database E)]
+									Q[/Queue/] --> G[Stateless MS]
+									E --> Q
+									E --> G
 								end
 						</div>
 					</section>
 					<section data-auto-animate>
-						<h2>Deployment Pipeline</h2>
-						<div class="mermaid">
-							flowchart LR
-								IT(...) --> DPP
-								subgraph Pre-Prod
-									DPP(Deploy) --> STT(Smoke Tests)
-									STT --> ET(Exploratory Tests)
-								end
-
-
-								subgraph Production Stage
-									ET --> BGD(Blue Green Deploy)
-								end
-						</div>
+						<h2>Service Definition</h2>
+						<ul>
+							<li class="fragment">The boundaries of a service are defined at
+								<span class="fragment highlight-blue">business level</span>. Not
+								<span class="fragment highlight-red">component level</span>
+							</li>
+							<li class="fragment">Architecture Cohesion helps in this scenario</lic>
+						</ul>
+					</section>
+					<section data-auto-animate>
+						<h2>Service Definition</h2>
+						<h4 data-auto-animate-id="subtitle">Examples</h4>
+						<ul>
+							<li>Tyro Customer's reporting</li>
+							<li>Spotify Search service</li>
+							<li>Payment Service</li>
+							<li>AWS S3</li>
+						</ul>
+					</section>
+					<section data-auto-animate>
+						<h2>Service Definition</h2>
+						<h4 data-auto-animate-id="subtitle">Service Level Indicators</h4>
+						<blockquote>...a carefully defined quantitative measure of
+							some aspect of the level of service that is provided. -- <a href="https://sre.google/sre-book/service-level-objectives/">Google SRE Book</a> </blockquote>
+					</section>
+					<section data-auto-animate>
+						<h2>Service Definition</h2>
+						<h4 data-auto-animate-id="subtitle">Service Level Indicators</h4>
+						<blockquote>Which attributes would you measure to know if your service is performing according to your expectations? -- Roger Almeida</blockquote>
+					</section>
+					<section data-auto-animate>
+						<h2>Service Definition</h2>
+						<h4 data-auto-animate-id="subtitle">Service Level Indicators</h4>
+						<h5>Examples:</h5>
+						<ul>
+							<li>Request latency</li>
+							<li>Availability</li>
+							<li>Volume of transactions</li>
+							<li>Click through rate</li>
+						</ul>
+					</section>
+					<section data-auto-animate>
+						<h2>Service Definition</h2>
+						<h4>Service Levels Objectives</h4>
+						<blockquote>a target value or range of values for a service level that is measured by an SLI. -- <a href="https://sre.google/sre-book/service-level-objectives/">Google SRE Book</a> </blockquote>
+					</section>
+					<section data-auto-animate>
+						<h2>Service Definition</h2>
+						<h4 data-auto-animate-id="subtitle">Service Level Objectives</h4>
+						<h5>Examples:</h5>
+						<ul>
+							<li class="fragment">Request latency:
+								<ul>
+									<li>50th percentile &le; 50 milliseconds </li>
+									<li>99th percentile &le; 2 seconds </li>
+								</ul>
+							</li>
+							<li class="fragment">Availability:
+								<ul>
+									<li>99.0% (2 nines)</li>
+									<li>99.5%</li>
+									<li>99.999% (3 nines)</li>
+									<li><i>N</i> nines</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section data-auto-animate>
+						<h2>Service Definition</h2>
+						<h4 data-auto-animate-id="subtitle">Service Level Objectives</h4>
+						<h5>Examples:</h5>
+						<ul>
+							<li class="fragment">Volume of transactions:
+								<ul>
+									<li>$100M/Month</li>
+									<li>5/hour - 150/hour</li>
+								</ul>
+							</li>
+							<li class="fragment">Click Through Rate:
+								<ul>
+									<li>Standard Deviation</li>
+									<li>Clicks/Hour</li>
+									<li>Clicks/Day</li>
+								</ul>
+							</li>
+						</ul>
 					</section>
 				</section>
-				<section>Support Models</section>
-				<section>Service Definition</section>
-				<section>Monitoring & Alerting</section>
+				<section>
+					<section data-auto-animate>
+						<h2>Support Models</h2>
+					</section>
+					<section data-auto-animate>
+						<h2>Support Models</h2>
+						<h3>You Build It, You Run it</h3>
+						<h4><i>VS</i></h4>
+						<h3>Site Reliability Engineering</h3>
+					</section>
+					<section data-auto-animate>
+						<h2>Support Models</h2>
+						<h3>You Build It, You Run it</h3>
+						<ul>
+							<li>Amazon's response to the tension between Dev and Ops</li>
+							<li>A Delivery Team is responsible for running their service in production</li>
+							<li>The Delivery Team is hold accountable for the service reliability</li>
+						</ul>
+					</section>
+					<section data-auto-animate>
+						<h2>Support Models</h2>
+						<h3>You Build It, You Run it: My experience</h3>
+						<ul>
+							<li class="fragment">Most Software Engineers believe this is just about writing scripts</li>
+							<li class="fragment">It involves things that are boring</li>
+							<li class="fragment">No better way to learn than by trying it out</li>
+							<li class="fragment">Borrowing experience helps</li>
+						</ul>
+					</section>
+					<section data-auto-animate>
+						<h2>Site Reliability Engineering</h2>
+						<h4>Topic for another day...</h4>
+					</section>
+				</section>
+				<section>
+					<section data-auto-animate>
+						<h2>Monitoring & Alerting</h2>
+					</section>
+					<section data-auto-animate>
+						<h2>Monitoring & Alerting</h2>
+						<h3>Observability</h3>
+						<blockquote>a measure of how well internal states of a system can be inferred from knowledge of its external outputs. </blockquote>
+					</section>
+					<section data-auto-animate>
+						<h2>Monitoring & Alerting</h2>
+						<h3>Observability</h3>
+						<ul>
+							<li class="fragment">Workout your logs</li>
+							<li class="fragment" style="font-style: italic">As a team member, I want to know when...</li>
+							<li class="fragment">Distributed systems benefit from distributed tracing</li>
+							<li class="fragment"><span class="ec ec-hand-over-mouth"></span>Magical things happen when a developer cannot DEBUG</li>
+						</ul>
+					</section>
+					<section data-auto-animate data-background-image="images/dashboard-datadog.avif" data-background-opacity="0.1">
+						<h2>Monitoring & Alerting</h2>
+						<h3>What should you monitor?</h3>
+						<ul>
+							<li class="fragment">SLIs and SLOs</li>
+							<li class="fragment">Story Telling things</li>
+							<li class="fragment">Noisy neighbors</li>
+							<li class="fragment">Errors!!!</li>
+						</ul>
+					</section>
+					<section data-auto-animate data-background-image="images/Pagerduty-Dark.png" data-background-opacity="0.1">
+						<h2>Monitoring & Alerting</h2>
+						<h3>Incident Classification</h3>
+						<table >
+							<tbody class="r-fit-text">
+								<tr class="fragment">
+									<td style="color: red">Severity 1</td>
+									<td>
+										<ul>
+											<li>It is a critical service</li>
+											<li>&egs; X% of customers </li>
+										</ul>
+									</td>
+								</tr>
+								<tr class="fragment">
+									<td style="color: orangered">Severity 2</td>
+									<td>
+										<ul>
+											<li>It is an important service</li>
+											<li>&leq; X% of customers </li>
+										</ul>
+									</td>
+								</tr>
+								<tr class="fragment">
+									<td style="color: orange">Severity 3</td>
+									<td>
+										<ul>
+											<li>It is an non-critical service</li>
+											<li>used by internal users only</li>
+										</ul>
+									</td>
+								</tr>
+								<tr class="fragment">
+									<td style="color: yellow">Severity 4</td>
+									<td>
+										<ul>
+											<li>It is an non-critical service</li>
+											<li>Small unexpected behaviour</li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+					<section data-auto-animate data-background-image="images/Pagerduty-Dark.png" data-background-opacity="0.1">
+						<h2>Monitoring & Alerting</h2>
+						<h3>Incident Classification</h3>
+						<table >
+							<tbody class="r-fit-text">
+							<tr>
+								<td style="color: red">Severity 1</td>
+								<td>
+									<ul>
+										<li>It is a critical service</li>
+										<li>&egs; X% of customers </li>
+									</ul>
+								</td>
+								<td class="fragment" data-fragment-index="1">Awake someone up<span class="ec ec-exclamation"></span></td>
+							</tr>
+							<tr>
+								<td style="color: orangered">Severity 2</td>
+								<td>
+									<ul>
+										<li>It is an important service</li>
+										<li>&leq; X% of customers</li>
+									</ul>
+								</td>
+								<td class="fragment" data-fragment-index="1">Awake someone up<span class="ec ec-exclamation"></span></td>
+							</tr>
+							<tr>
+								<td style="color: orange">Severity 3</td>
+								<td>
+									<ul>
+										<li>It is an non-critical service</li>
+										<li>used by internal users only</li>
+									</ul>
+								</td>
+								<td class="fragment">
+									<ul>
+										<li>Email the team</li>
+										<li>Log a Jira ticket</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td style="color: yellow">Severity 4</td>
+								<td>
+									<ul>
+										<li>It is an non-critical service</li>
+										<li>Small unexpected behaviour</li>
+									</ul>
+								</td>
+								<td class="fragment">Log details</td>
+							</tr>
+							</tbody>
+						</table>
+					</section>
+				</section>
+				<section>
+					<section data-auto-animate>
+						<h2>Responding to Production Incidents</h2>
+					</section>
+					<section data-auto-animate>
+						<h2>Responding to Production Incidents</h2>
+
+					</section>
+				</section>
 				<section>Testing Practices</section>
 				<section>Appendix</section>
 				<section>Preparedness</section>
